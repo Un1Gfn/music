@@ -1,0 +1,11 @@
+#!/dev/null
+
+Y="youtube-dl --proxy socks5://127.0.0.1:1080/ -4 -o %(id)s.%(ext)s "
+
+function err {
+  echo "error on line $1: '$2'"
+  echo "quit"
+  exit 1
+}
+
+trap 'err $LINENO "$BASH_COMMAND"' ERR
