@@ -18,6 +18,11 @@ http://wiki.hydrogenaud.io/index.php?title=ReplayGain_specification
 
 -->
 
+[MDN](https://developer.mozilla.org)\
+[Media container formats (file types) guide](https://developer.mozilla.org/docs/Web/Media/Formats/Containers)\
+[Web video codec guide](https://developer.mozilla.org/docs/Web/Media/Formats/Video_codecs)\
+[Web audio codec guide](https://developer.mozilla.org/docs/Web/Media/Formats/Audio_codecs)
+
 |ID|Title|Artist|Subs|
 |-|-|-|-:|
 |fGXCKG6o2Ow|RESISTER|ASCA|ja vtt|
