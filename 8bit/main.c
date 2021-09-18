@@ -110,28 +110,24 @@ static inline LD o2f(const int o){
 
 }*/
 
-static inline void mknote(const LD f){
+static inline void mknote(LD f){
 
-  // +max  255
-  // +3/4  224
-  // +2/4  192
-  // +1/4  160
-  // 0mute 128
-  // -1/2   64
-  // -max    0
+  // + max_vol  255
+  // 0  mute    128
+  // - max_vol    0
 
-  const int N=lrintl((LD)(rate*2)/f);
-  // printf("%Lf #O# %Lf\n",N,f);
+  // https://www.gnu.org/software/libc/manual/html_node/Mathematical-Constants.html
+  const LD omega = (LD)2 * (LD)M_PI * f;
 
-  assert(rate%4==0);
-  static_assert(1==sizeof(char));
-  for(int i=0;i<(rate/4);++i){
-    if(i%N==0)
-      assert(1==fwrite(&(unsigned char){192},1,1,stdout)); // putchar(vol);
-    else
-      assert(1==fwrite(&(unsigned char){128},1,1,stdout)); // putchar(mute);
+  for(LD i=0;i<(rate/2);++i){
+    unsigned char vol=floorl(
+      (LD)128 * sinl( omega * i * (LD)4 / (LD)rate ) + 128
+    );
+    // eprintf("%Lf %u\n",i,vol);
+    assert(1==fwrite(&(unsigned char){
+      vol
+    },1,1,stdout));
   }
-
 }
 
 static inline void h2o2f2note(const char *__restrict const h){
@@ -142,23 +138,23 @@ void slide(){
 
   const char *__restrict const arr[]={
 
-    "c''''",
+    // "c''''",
 
-    "b'''",
-    "a'''",
-    "g'''",
-    "f'''",
-    "e'''",
-    "d'''",
-    "c'''",
+    // "b'''",
+    // "a'''",
+    // "g'''",
+    // "f'''",
+    // "e'''",
+    // "d'''",
+    // "c'''",
 
-    "b''",
-    "a''",
-    "g''",
-    "f''",
-    "e''",
-    "d''",
-    "c''",
+    // "b''",
+    // "a''",
+    // "g''",
+    // "f''",
+    // "e''",
+    // "d''",
+    // "c''",
 
     // "b''",
     // "a''is",
@@ -181,13 +177,15 @@ void slide(){
     // "d'",
     // "c'",
 
-    // "b",
-    // "a",
-    // "g",
-    // "f",
-    // "e",
-    // "d",
-    // "c",
+    "c'",
+
+    "b",
+    "a",
+    "g",
+    "f",
+    "e",
+    "d",
+    "c",
 
   NULL};
 
