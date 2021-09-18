@@ -3,18 +3,16 @@
 #include <math.h>
 #include <stdlib.h>
 #include <unistd.h>
-
+#include <string.h>
 
 #define eprintf(...) fprintf(stderr,__VA_ARGS__)
 
 typedef long double LD;
 
 // Playing raw data 'stdin' : Unsigned 8 bit, Rate 8000 Hz, Mono
-static const int rate=8000;
+static int rate=8000;
 
 static_assert(1==sizeof(char));
-static const char V=0xc0;
-static const char M=0x80;
 
 // Convert Helmholtz Notation to key no. relative to a'
 // [cdefgab]('){0,5}(is|es){0,1}
@@ -114,17 +112,24 @@ static inline LD o2f(const int o){
 
 static inline void mknote(const LD f){
 
-  assert(16000==rate*2);
+  // +max  255
+  // +3/4  224
+  // +2/4  192
+  // +1/4  160
+  // 0mute 128
+  // -1/2   64
+  // -max    0
+
   const int N=lrintl((LD)(rate*2)/f);
   // printf("%Lf #O# %Lf\n",N,f);
 
-  assert(2000==(rate/4));
+  assert(rate%4==0);
   static_assert(1==sizeof(char));
   for(int i=0;i<(rate/4);++i){
     if(i%N==0)
-      assert(1==fwrite(&V,1,1,stdout)); // putchar(V);
+      assert(1==fwrite(&(unsigned char){192},1,1,stdout)); // putchar(vol);
     else
-      assert(1==fwrite(&M,1,1,stdout)); // putchar(M);
+      assert(1==fwrite(&(unsigned char){128},1,1,stdout)); // putchar(mute);
   }
 
 }
@@ -136,6 +141,8 @@ static inline void h2o2f2note(const char *__restrict const h){
 void slide(){
 
   const char *__restrict const arr[]={
+
+    "c''''",
 
     "b'''",
     "a'''",
@@ -153,21 +160,34 @@ void slide(){
     "d''",
     "c''",
 
-    "b'",
-    "a'",
-    "g'",
-    "f'",
-    "e'",
-    "d'",
-    "c'",
+    // "b''",
+    // "a''is",
+    // "a''",
+    // "g''is",
+    // "g''",
+    // "f''is",
+    // "f''",
+    // "e''",
+    // "d''is",
+    // "d''",
+    // "c''is",
+    // "c''",
 
-    "b",
-    "a",
-    "g",
-    "f",
-    "e",
-    "d",
-    "c",
+    // "b'",
+    // "a'",
+    // "g'",
+    // "f'",
+    // "e'",
+    // "d'",
+    // "c'",
+
+    // "b",
+    // "a",
+    // "g",
+    // "f",
+    // "e",
+    // "d",
+    // "c",
 
   NULL};
 
@@ -179,7 +199,12 @@ void slide(){
   for(const char *__restrict const *__restrict sp=&arr[1];*sp;         ++sp)h2o2f2note(*sp);
 }
 
-int main() {
+int main(const int argc, const char *__restrict const *__restrict const argv) {
+
+  assert(argc==2);
+  assert(argv[1]);
+  assert(4<=strlen(argv[1]));
+  rate=strtol(argv[1],NULL,10);
 
   if(isatty(STDOUT_FILENO)){
     eprintf("error: stdout is a terminal\n");
