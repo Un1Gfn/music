@@ -1,20 +1,14 @@
 \version "2.22.1"
 
-\score {
-
-  {
-
-    \time 4/4
-
-    % https://en.wikipedia.org/wiki/Tempo
-    \tempo Moderato 4 = 120
-
-    % {
-    %   r8 a,16e, g,8a,
-    %   r8 a,16e, g,8a,
-    %   r8 a,16e, g,8a,
-    %   r8 a,16e, a8b
-    % }
+% https://lilypond.org/doc/stable/Documentation/extending/simple-substitution-functions
+% https://lilypond.org/doc/stable/Documentation/notation/using-music-functions
+% https://lilypond.org/doc/stable/Documentation/notation/substitution-function-syntax
+% https://lilypond.org/doc/stable/Documentation/notation/substitution-function-examples
+segmentA =
+#(define-music-function
+    ()
+    ()
+  #{
 
     <<
 
@@ -80,10 +74,30 @@
 
     >>
 
-    % 00:55
-    {
-      
-    }
+  #})
+
+\score {
+
+  {
+
+    \time 4/4
+
+    % https://en.wikipedia.org/wiki/Tempo
+    \tempo Moderato 4 = 120
+
+    % {
+    %   r8 a,16e, g,8a,
+    %   r8 a,16e, g,8a,
+    %   r8 a,16e, g,8a,
+    %   r8 a,16e, a8b
+    % }
+
+    \segmentA
+
+    % % 00:55
+    % {
+
+    % }
 
   }
 
