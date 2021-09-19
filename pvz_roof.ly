@@ -3,12 +3,6 @@
 
 \version "2.22.1"
 
-segmentZero = {
-    a8 r dis e
-    a,8 r dis e
-    g8 d e g e4 g8e
-}
-
 % https://lilypond.org/doc/stable/Documentation/extending/simple-substitution-functions
 % https://lilypond.org/doc/stable/Documentation/notation/using-music-functions
 % https://lilypond.org/doc/stable/Documentation/notation/substitution-function-syntax
@@ -21,16 +15,16 @@ segmentA = {
     % https://lilypond.org/doc/stable/Documentation/notation/midi-instruments
     \new Staff \with {midiInstrument = "shamisen"} {
 
-      \repeat unfold 2 { a,8 e16e a8e r8e r8e }
+      \repeat unfold 2 { a,8 e16e a8 e r e r e }
 
       \repeat unfold 2 {
 
-        a,8 e16e a8e r8e r8e
-        c8  d16d g8e r8e r8e
+        a,8 e16e a8 e r e r e
+        c8  d16d g8 e r e r e
 
-        d8a16a c'8a r8a r8a
-        <f,g,>8 e16e a8e
-        <g,a,>8 e16e a8e
+        d8 a16a c'8 a r a r a
+        <f,g,>8 e16e a8 e
+        <g,a,>8 e16e a8 e
 
       }
 
@@ -42,8 +36,8 @@ segmentA = {
         c8  d16d g8e r8e r8e
 
         d8a16a c'8a r8a r8a
-        f,8 e16e a8e
-        g,8 e16e a8e
+        f,8 c16c f8f
+        g,8 d16d g8g
 
       }
 
@@ -53,15 +47,16 @@ segmentA = {
 
       r1 r2. dis8e
 
-      \segmentZero
-
-      d8 e d c a, r g, a,
-      c8 d e d c8r8 dis8e
-
-      \segmentZero
-
-      d e d c a, r g, a,
-      c8 d e d c8r8 d8a,
+      \repeat unfold 2 {
+          a8 r dis e
+          a,8 r dis e
+          g8 d e g e4 g8e
+          %
+          d8 e d c a, r g, a,
+      } \alternative { % Alternate endings
+        { c8 d e d c8r8 dis8e }
+        { c8 d e d c8r8 d8a, }
+      }
 
       % 00:20
 
@@ -84,13 +79,21 @@ segmentB = {
 
     \new Staff \with {midiInstrument = "shamisen"} {
 
+      % 00:55
+
       % Written-out (unfold) repeat
       % https://lilypond.org/doc/v2.20/Documentation/notation/long-repeats#written_002dout-repeats
+      \repeat unfold 2 { a,8 e16e a8e r8e r8e }
+
       \repeat unfold 2 {
 
-        \repeat unfold 2 \arpeggioZero f, c f
+        \arpeggioZero f, c f
+        \arpeggioZero f, c f
 
-        \repeat unfold 2 \arpeggioZero e, b, e
+        \arpeggioZero e, b, e
+        \arpeggioZero e, b, e
+
+        % 01:00
 
         \arpeggioZero d, f, a,
         \arpeggioZero e, gis, b,
@@ -103,9 +106,30 @@ segmentB = {
       \arpeggioZero f, a, c
       \arpeggioZero d, d, d,
 
+      r1
+      r1
+
       % 01:15
 
-    } \\ \fixed c' {
+    } \\ \relative {
+
+      % 00:55
+
+      r1
+      
+      r2. a''8b c16 r r b r r a r
+
+      r b r r c r a r b2 g4 e
+
+      % 01:00
+
+      \repeat unfold 2 {
+        dis8 e f dis e \tuplet 3/2 { dis16 e d } c8 b
+        c8 r d r e r a r
+      } \alternative {
+        { a2 g4 f e2 b4 e }
+        { f8 \tuplet 3/2 { e16 f e } d8 c b a g f e8r e8r e8r e8r }
+      }
 
     }
 
