@@ -17,7 +17,8 @@ harmonicMinor = #`(
   (0 . ,NATURAL)
 )
 
-mainTreble = \relative c'' {
+% C - harmonic minor - melody
+Cm_M = \relative c'' {
     % http://lilypond.org/doc/stable/Documentation/music-glossary/anacrusis
     % Double-dotted notes - x*(1+0.5+0.25)
     % http://lilypond.org/doc/v2.22/Documentation/notation/writing-rhythms#durations
@@ -30,92 +31,122 @@ mainTreble = \relative c'' {
     c16(d   | ees8 f16 ees d c b
   }
 
-mainBass = \fixed c {
+% C - harmonic minor - accompaniment
+Cm_Acc = \fixed c {
            bes4 | aes ees | f g | c4.
   c'8 | b4 bes  | a   aes |
 }
 
-subTB = <<
-  \relative c'' {
-           | ees16(d ees4  
-    g16f   | ees16d  ees4  
-    g16ees | f16ees  f4
-    g16aes |
-  } \\ \relative c {
-    ees8ees' d4 | c g | aes bes |
-  }
->>
-
-\score{
-
-  {
-
-    \time 2/4
-    \tempo "Andante" 4 = 70
-
-    { %{ part 1/3 %}
-
-      % http://lilypond.org/doc/v2.22/Documentation/learning/pitches-and-key-signatures#key-signatures
-      % http://lilypond.org/doc/v2.22/Documentation/learning/advanced-rhythmic-commands#partial-measure
-      % \key c \minor
-      % \key c \aeolian
-      \key c \harmonicMinor
-
-      \partial 8 {\fixed c' g8}
-
-      << \relative c'' {
-        \mainTreble c16 | b4.)                    g8 |
-      } \\ \fixed c {
-        c'4  \mainBass | g4 f8 aes8 | r8 g16 aes g f ees d | 
-      } >>
-
-      << \relative c'' {
-        \relative c'' \key ees \major
-        \mainTreble c16 | b4.) \key ees \ionian bes8 |
-      } \\ \fixed c {
-        c8 c' \mainBass | g4 f8aes | r8 g16aes16 g8 f8 |
-      } >>
-
-    }
-
-    \relative c'' { %{ part 2/3 %}
-
-      \subTB
-      % http://lilypond.org/doc/stable/Documentation/learning/ties-and-slurs.en.html
-         g'8 f16g ees16.)   \breathe r32
-      8~(|8 d16c   d16.)   \breathe r32
-      8~(|8 c16b   c16.)   \breathe r32
-      c8(|bes c16 bes aes g f ees | d4.)
-
-      bes'8 |
-
-      \subTB
-                aes'8 g8..)   \breathe r32
-      g16(aes | bes8  f8..)   \breathe r32
-      f16(g   | aes8  ees8..) \breathe r32
-      ees16(f | g8 aes16 g \key c \harmonicMinor f ees d c | b4.) g8 |
-
-    }
-
-    { %{ part 3/3 %}
-      << \relative c'' {
-        \mainTreble d16 | \partial 8 {c4.)}
-      } \\ \fixed c {
-        c8c' \mainBass g8 aes f g | \partial 8 { c'8 g c }
-      } >>
-    }
-
-    % http://lilypond.org/doc/v2.22/Documentation/notation/bars
-    \bar "|."
-
-    r1
-    r1
-    r1
-    r1
-
-  }
-
-  % \layout{}
-  \midi{}
-
+% B-flat - major - melody
+EES_M = \relative c'' {
+         | ees16(d ees4  
+  g16f   | ees16d  ees4  
+  g16ees | f16ees  f4
+  g16aes |
 }
+
+% B-flat - major - accompaniment
+EES_Acc = \relative c {
+  %{ees8ees'%} ees16.r32ees'8 d4 | c g | aes bes |
+}
+
+% \relative melody
+switchingM = %{ no \relative or \fixed allowed here! %} {
+  g16(aes | bes8  f8..)   \breathe r32
+  f16(g   | aes8  ees8..) \breathe r32
+  ees16(f | g8 
+}
+
+% \relative accompaniment
+switchingAcc = %{ no \relative or \fixed allowed here! %} {
+  ees8~(|8 d16c  d16.) \breathe r32
+    d8~(|8 c16b  c16.) \breathe r32
+     c8(|
+}
+
+\score{ \fixed c' {
+
+  \time 2/4
+  \tempo "Andante" 4 = 70
+
+  % << \clef treble \\ \clef bass >>
+
+   { %{ part 1/6 %}
+
+    % http://lilypond.org/doc/v2.22/Documentation/learning/pitches-and-key-signatures#key-signatures
+    % http://lilypond.org/doc/v2.22/Documentation/learning/advanced-rhythmic-commands#partial-measure
+    % \key c \minor
+    % \key c \aeolian
+    \key c \harmonicMinor
+
+    \partial 8 {\fixed c' g8}
+
+    << \relative c'' {
+      % \clef treble
+      \Cm_M c16 | b4.) g8 |
+    } \\ \fixed c {
+      \clef bass
+      c'4  \Cm_Acc | g4 f8 aes8 | r8 g16 aes g f ees d | 
+    } >>
+
+    << \relative c'' {
+      \relative c'' \key ees \major
+      \Cm_M c16 | b4.)
+    } \\ \fixed c {
+      % \clef bass
+      % c8c'8
+      c16.r32c'8
+      % c16.. r64c'8
+      % c16r8c'16
+      \Cm_Acc | g4 f8aes | r8 g16aes16 g8
+    } >>
+
+  }
+
+  %{ part 2/6 %}
+  \key ees \ionian
+  << { bes8 | \EES_M | }
+  \\ { f,8  | \EES_Acc | } >>
+
+  { %{ part 3/6 %}
+    << \relative c''' {
+      % http://lilypond.org/doc/stable/Documentation/learning/ties-and-slurs.en.html
+      g8 f16g ees16.) \breathe r32
+      \switchingAcc | bes8 c16 bes aes g f ees | d4.)
+    } \\ { ees,4. \relative c'' {
+      \clef treble  \switchingM ees8 c aes |
+      \clef bass r8 bes16 c bes aes
+    }} >>
+  }
+
+  %{ part 4/6 %}
+  << { bes8   | \EES_M | aes'8 g'8..) \breathe r32 }
+  \\ { g,16f, | \EES_Acc | ees8 bes, ees, } >>
+
+  { %{ part 5/6 %}
+    << \relative c''' {
+      \switchingM aes16 g f ees d c | b4.)
+    } \\ \relative c' {
+      \switchingAcc | b8 c aes f | r8 g16 aes g f
+    } >>
+  }
+
+  %{ part 6/6 %}
+  { 
+    \key c \harmonicMinor
+    << \relative c'' {
+          g8 | \Cm_M d'16 | \partial 8 {c4.)}
+    } \\ \fixed c {
+      ees16d | c16.r32c'8 \Cm_Acc g8 aes f g | \partial 8 { c'8 g c }
+    } >>
+  }
+
+  % http://lilypond.org/doc/v2.22/Documentation/notation/bars
+  \bar "|."
+
+  r1
+  r1
+  r1
+  r1
+
+} \layout{} \midi{} }

@@ -249,3 +249,5 @@ complete -F _comp lyentr
 # https://unix.stackexchange.com/questions/572747/make-entr-execute-a-locally-defined-shell-function
 export -f ly
 export -f play
+
+cd /home/darren/music/lilypond
