@@ -6,7 +6,7 @@
 
 % http://lilypond.org/doc/v2.22/Documentation/notation/displaying-pitches#key-signature
 % \key c \harmonicMinor
-% c d ees f g aes b 
+% ees aes (bes)
 harmonicMinor = #`(
   (6 . ,NATURAL)
   (5 . ,FLAT)
@@ -17,7 +17,7 @@ harmonicMinor = #`(
   (0 . ,NATURAL)
 )
 
-segA_Treble = \relative c'' {
+mainTreble = \relative c'' {
     % http://lilypond.org/doc/stable/Documentation/music-glossary/anacrusis
     % Double-dotted notes - x*(1+0.5+0.25)
     % http://lilypond.org/doc/v2.22/Documentation/notation/writing-rhythms#durations
@@ -30,10 +30,21 @@ segA_Treble = \relative c'' {
     c16(d   | ees8 f16 ees d c b
   }
 
-segA_Bass = \fixed c {
+mainBass = \fixed c {
            bes4 | aes ees | f g | c4.
   c'8 | b4 bes  | a   aes |
 }
+
+subTB = <<
+  \relative c'' {
+           | ees16(d ees4  
+    g16f   | ees16d  ees4  
+    g16ees | f16ees  f4
+    g16aes |
+  } \\ \relative c {
+    ees8ees' d4 | c g | aes bes |
+  }
+>>
 
 \score{
 
@@ -42,7 +53,7 @@ segA_Bass = \fixed c {
     \time 2/4
     \tempo "Andante" 4 = 70
 
-    { % Part 1/3
+    { %{ part 1/3 %}
 
       % http://lilypond.org/doc/v2.22/Documentation/learning/pitches-and-key-signatures#key-signatures
       % http://lilypond.org/doc/v2.22/Documentation/learning/advanced-rhythmic-commands#partial-measure
@@ -53,59 +64,46 @@ segA_Bass = \fixed c {
       \partial 8 {\fixed c' g8}
 
       << \relative c'' {
-        \segA_Treble c16 | b4.)                    g8 |
+        \mainTreble c16 | b4.)                    g8 |
       } \\ \fixed c {
-        c'4  \segA_Bass | g4 f8 aes8 | r8 g16 aes g f ees d | 
+        c'4  \mainBass | g4 f8 aes8 | r8 g16 aes g f ees d | 
       } >>
 
       << \relative c'' {
         \relative c'' \key ees \major
-        \segA_Treble c16 | b4.) \key ees \ionian bes8 |
+        \mainTreble c16 | b4.) \key ees \ionian bes8 |
       } \\ \fixed c {
-        c8 c' \segA_Bass | g4 f8aes | r8 g16aes16 g8 f8 |
+        c8 c' \mainBass | g4 f8aes | r8 g16aes16 g8 f8 |
       } >>
 
     }
 
-    \relative c'' { % Part 2/3 
+    \relative c'' { %{ part 2/3 %}
 
-      \repeat unfold 2 {
+      \subTB
+      % http://lilypond.org/doc/stable/Documentation/learning/ties-and-slurs.en.html
+         g'8 f16g ees16.)   \breathe r32
+      8~(|8 d16c   d16.)   \breathe r32
+      8~(|8 c16b   c16.)   \breathe r32
+      c8(|bes c16 bes aes g f ees | d4.)
 
-                ees16(d ees4  
-        g16f   | ees16d ees4  
-        g16ees | f16ees f4
-        g16aes |
+      bes'8 |
 
-      } \alternative {
-
-        {
-
-          % http://lilypond.org/doc/stable/Documentation/learning/ties-and-slurs.en.html
-
-             g8 f16g ees16.)   \breathe r32
-          8~(|8 d16c   d16.)   \breathe r32
-          8~(|8 c16b   c16.)   \breathe r32
-          c8(|bes c16 bes aes g f ees | d4.)
-
-          bes'8 |
-
-        }
-        {
-
-                    aes'8 g8..)   \breathe r32
-          g16(aes | bes8  f8..)   \breathe r32
-          f16(g   | aes8  ees8..) \breathe r32
-          ees16(f | g8 aes16 g \key c \harmonicMinor f ees d c | b4.) g8 |
-
-        }
-
-      }
+      \subTB
+                aes'8 g8..)   \breathe r32
+      g16(aes | bes8  f8..)   \breathe r32
+      f16(g   | aes8  ees8..) \breathe r32
+      ees16(f | g8 aes16 g \key c \harmonicMinor f ees d c | b4.) g8 |
 
     }
 
-    % \relative c'' { % Part 3/3
-    %   \segA_Treble d16 | \partial 8 {c4.)}
-    % }
+    { %{ part 3/3 %}
+      << \relative c'' {
+        \mainTreble d16 | \partial 8 {c4.)}
+      } \\ \fixed c {
+        c8c' \mainBass g8 aes f g | \partial 8 { c'8 g c }
+      } >>
+    }
 
     % http://lilypond.org/doc/v2.22/Documentation/notation/bars
     \bar "|."

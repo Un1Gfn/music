@@ -125,10 +125,15 @@ function clean {
 
 function play {
   # aplay -t wav "$WAV"
+  { ((0==$#)) || [[ "$1" =~ ^(-h|--help)$ ]]; } && {
+    echo "${FUNCNAME[0]} -h|--help"
+    echo "${FUNCNAME[0]} TITLE [x|--no-resume-playback]"
+    return 1
+  }
   printf "\e]0;%s\a" "${FUNCNAME[0]}()"
   local A=()
   A+=(--no-pause)
-  # A+=(--no-resume-playback)
+  ((1!=$#)) && A+=(--no-resume-playback)
   mpv "${A[@]}" "/tmp/$1.wav"
 }
 
