@@ -147,7 +147,7 @@ segmentB = {
     % https://en.wikipedia.org/wiki/Tempo
     \tempo Moderato 4 = 120
 
-    % \segmentA
+    \segmentA
 
     % 00:55
 

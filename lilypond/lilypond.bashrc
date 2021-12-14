@@ -118,10 +118,18 @@
 
 END_OF_MULTILINE_COMMENT
 
+function clean {
+  ((0==$#)) || return 1
+  rm -fv *.ly.midi *.ly.pdf
+}
+
 function play {
   # aplay -t wav "$WAV"
   printf "\e]0;%s\a" "${FUNCNAME[0]}()"
-  mpv --no-pause --no-resume-playback "/tmp/$1.wav"
+  local A=()
+  A+=(--no-pause)
+  # A+=(--no-resume-playback)
+  mpv "${A[@]}" "/tmp/$1.wav"
 }
 
 function ly {
@@ -161,6 +169,8 @@ function ly {
   # Do remove $WAV - write to new inode instead of overwriting - avoid [ffmpeg/demuxer] wav: Packet corrupt (stream = 0, dts = NOPTS).
   # https://stackoverflow.com/q/3141738/duplicating-stdout-to-stderr
   [ -n "$(rm -fv "$MIDI" "$PDF_L" "$WAV" | tee >(cat 1>&2) )" ] && echo
+
+  printf "\e[32m%s\e[0m\n" "[$$(date +%T)]"
 
   lilypond --pdf -o "$LY" "$LY" || return
   echo
