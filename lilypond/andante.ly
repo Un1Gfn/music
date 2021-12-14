@@ -77,22 +77,29 @@ switchingAcc = %{ no \relative or \fixed allowed here! %} {
     % http://lilypond.org/doc/v2.22/Documentation/learning/advanced-rhythmic-commands#partial-measure
     % \key c \minor
     % \key c \aeolian
+    % \key c \harmonicMinor
     \key c \harmonicMinor
 
-    \partial 8 {\fixed c' g8}
+    \partial 8 {
+      << {
+        \clef treble
+        g8
+      } \new Staff = "x" {
+        \clef bass
+        r8
+      } >>
+    }
 
     << \relative c'' {
-      % \clef treble
       \Cm_M c16 | b4.) g8 |
-    } \\ \fixed c {
-      \clef bass
+    } \\ \change Staff = "x" \fixed c {
       c'4  \Cm_Acc | g4 f8 aes8 | r8 g16 aes g f ees d | 
     } >>
 
     << \relative c'' {
-      \relative c'' \key ees \major
+      \relative c''
       \Cm_M c16 | b4.)
-    } \\ \fixed c {
+    } \\ \change Staff = "x" \fixed c {
       % \clef bass
       % c8c'8
       c16.r32c'8
@@ -106,28 +113,28 @@ switchingAcc = %{ no \relative or \fixed allowed here! %} {
   %{ part 2/6 %}
   \key ees \ionian
   << { bes8 | \EES_M | }
-  \\ { f,8  | \EES_Acc | } >>
+  \\ \change Staff = "x" { f,8  | \EES_Acc | } >>
 
   { %{ part 3/6 %}
     << \relative c''' {
       % http://lilypond.org/doc/stable/Documentation/learning/ties-and-slurs.en.html
       g8 f16g ees16.) \breathe r32
       \switchingAcc | bes8 c16 bes aes g f ees | d4.)
-    } \\ { ees,4. \relative c'' {
-      \clef treble  \switchingM ees8 c aes |
+    } \\ \change Staff = "x" { ees,4. \relative c'' {
+      \clef treble  \switchingM) ees8 c aes |
       \clef bass r8 bes16 c bes aes
     }} >>
   }
 
   %{ part 4/6 %}
   << { bes8   | \EES_M | aes'8 g'8..) \breathe r32 }
-  \\ { g,16f, | \EES_Acc | ees8 bes, ees, } >>
+  \\ \change Staff = "x" { g,16f, | \EES_Acc | ees8 bes, ees, } >>
 
   { %{ part 5/6 %}
     << \relative c''' {
       \switchingM aes16 g f ees d c | b4.)
-    } \\ \relative c' {
-      \switchingAcc | b8 c aes f | r8 g16 aes g f
+    } \\ \change Staff = "x" \relative c' {
+      \switchingAcc | b8 c) aes f | r8 g16 aes g f
     } >>
   }
 
@@ -135,17 +142,15 @@ switchingAcc = %{ no \relative or \fixed allowed here! %} {
   { 
     \key c \harmonicMinor
     << \relative c'' {
-          g8 | \Cm_M d'16 | \partial 8 {c4.)}
-    } \\ \fixed c {
-      ees16d | c16.r32c'8 \Cm_Acc g8 aes f g | \partial 8 { c'8 g c }
+          g8 | \Cm_M d'16 | \partial 4. {c4.)}
+    } \\ \change Staff = "x" \fixed c {
+      ees16d | c16.r32c'8 \Cm_Acc g8 aes f g | \partial 4. { c'8 g c }
     } >>
   }
 
   % http://lilypond.org/doc/v2.22/Documentation/notation/bars
   \bar "|."
 
-  r1
-  r1
   r1
   r1
 
