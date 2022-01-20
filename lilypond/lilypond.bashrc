@@ -2,12 +2,6 @@
 
 : <<"END_OF_MULTILINE_COMMENT"
 
-  ## shellcheck --shell=bash youtube.bash_aliases
-  # source ./youtube.bash_aliases
-
-  unalias youtube-dl 2>/dev/null
-  alias youtube-dl='youtube-dl --proxy socks5://127.0.0.1:1080/ --force-ipv4'
-
   TEMPLATE='%(id)s.%(ext)s'
 
   SEP='^'
@@ -128,20 +122,39 @@ function clean {
   rm -fv -- *.ly.midi *.ly.pdf
 }
 
+# .ly -> speaker
 function play {
+
   # aplay -t wav "$WAV"
-  { ((0==$#)) || [[ "$1" =~ ^(-h|--help)$ ]]; } && {
-    echo "${FUNCNAME[0]} -h|--help"
-    echo "${FUNCNAME[0]} TITLE [x|--no-resume-playback]"
-    return 1
-  }
-  printf "\e]0;%s\a" "${FUNCNAME[0]}()"
-  local A=()
-  A+=(--no-pause)
-  ((1!=$#)) && A+=(--no-resume-playback)
-  mpv "${A[@]}" "/tmp/$1.wav"
+
+  ((1==$#)) || return 1
+  echo
+
+  # local RT=44100
+  local SFARR=(
+    # community
+    # "/usr/share/soundfonts/freepats-general-midi.sf2"
+    # "/usr/share/soundfonts/FluidR3_GM.sf2"
+    # "/usr/share/soundfonts/FluidR3_GS.sf2"
+    # AUR
+    "/usr/share/soundfonts/Unison.sf2"
+    "/usr/share/soundfonts/GeneralUser.sf2"
+    "/usr/share/soundfonts/Arachno.sf2"
+  )
+
+  SF="${SFARR[$((RANDOM%${#SFARR[@]}))]}"
+  printf ": using soundbank \e[32m%s\e[0m\n" "$SF"
+  echo
+
+  alacritty.sh "${FUNCNAME[0]}()"
+
+  # /etc/timidity/timidity.cfg
+  timidity -c <(echo "soundfont $SF") "$1.ly.midi"
+  echo
+
 }
 
+# .ly -> .midi
 function ly {
 
   local LY="./$1.ly"
@@ -150,66 +163,30 @@ function ly {
   local PDF="./$1.ly.pdf"
   local PDF_L="/tmp/un1gfn.github.io/current_sheet.pdf"
 
-  local RT=44100
   local WAV="/tmp/$1.wav"
   # local WAV="/tmp/$1.$(uuidgen).wav" # Random name so that mpv can't remember
 
-  { [ 1 -eq $# ] && [ -f "$LY" ]; } || return
+  { [ 1 -eq $# ] && [ -f "$LY" ]; } || return 1
   echo
-
-  # if [ -e "$WAV" ]; then
-  #   read -rp "press <Enter> to play '$WAV', press <EOF> to overwrite "
-  #   R="$?"
-  #   case "$R" in
-  #   0) # <Enter>
-  #     echo
-  #     $MPV "$WAV"
-  #     return
-  #     ;;
-  #   1) # <EOF>
-  #     ;;
-  #   130) # Bash exits immediately on SIGINT, not executing the following lines at all
-  #     echo err
-  #     return
-  #     ;;
-  #   esac
-  # fi
 
   # Don't remove $PDF - avoid deadlink current_sheet.pdf
   # Do remove $WAV - write to new inode instead of overwriting - avoid [ffmpeg/demuxer] wav: Packet corrupt (stream = 0, dts = NOPTS).
   # https://stackoverflow.com/q/3141738/duplicating-stdout-to-stderr
   [ -n "$(rm -fv "$MIDI" "$PDF_L" "$WAV" | tee >(cat 1>&2) )" ] && echo
 
-  printf "\e[32m%s\e[0m\n" "[$$(date +%T)]"
+  printf "\e[32m%s\e[0m\n" "[$(date +%T)]"
 
-  lilypond --pdf -o "$LY" "$LY" || return
+  lilypond --pdf -o "$LY" "$LY" || return 2
   echo
   ln -sfv "$(realpath "$PDF")" "$PDF_L"
   file "$PDF_L"
   echo
 
-  echo "fluidsynth ..."
-  fluidsynth \
-    -F "$WAV" \
-    -g 1.3 \
-    -l \
-    -o synth.cpu-cores=4 \
-    -r "$RT" \
-    -T wav \
-    /usr/share/soundfonts/FluidR3_GM.sf2 \
-    "$MIDI" \
-    1>/dev/null \
-    2>/dev/null
-  echo "fluidsynth returned exit code $?"
-  echo
-  sync
-  # play "$WAV"
-
 }
 
 function lyentr {
   printf "\e]0;%s\a" "${FUNCNAME[0]}()"
-  { [ 1 -eq $# ] && [ -f "$1.ly" ]; } || return
+  { [ 1 -eq $# ] && [ -f "$1.ly" ]; } || return 3
   entr <<<"$1.ly" -s "ly $1"
 }
 
