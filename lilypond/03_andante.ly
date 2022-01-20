@@ -27,7 +27,7 @@ Cm_M = \relative c'' {
     ees16c  | d16c d4
     ees16f  | ees8 d16ees c16.)    \breathe r32
     ees16(f | g8   d8..)           \breathe r32
-    d16(ees | f8   c8..)           \breathe r32
+    d16(e   | f8   c8..)           \breathe r32
     c16(d   | ees8 f16 ees d c b
   }
 

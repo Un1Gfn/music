@@ -118,9 +118,14 @@
 
 END_OF_MULTILINE_COMMENT
 
+function help2 {
+  local FARR=(help2 clean play ly{,entr})
+  echo "${FARR[@]/%/()}"
+}
+
 function clean {
   ((0==$#)) || return 1
-  rm -fv *.ly.midi *.ly.pdf
+  rm -fv -- *.ly.midi *.ly.pdf
 }
 
 function play {
@@ -241,13 +246,17 @@ function _comp {
 
 }
 
-complete -F _comp play
-complete -F _comp ly
-complete -F _comp lyentr
+{
 
-# For "entr -s"
-# https://unix.stackexchange.com/questions/572747/make-entr-execute-a-locally-defined-shell-function
-export -f ly
-export -f play
+  complete -F _comp play
+  complete -F _comp ly
+  complete -F _comp lyentr
 
-cd /home/darren/music/lilypond
+  # For "entr -s"
+  # https://unix.stackexchange.com/questions/572747/make-entr-execute-a-locally-defined-shell-function
+  export -f ly
+  export -f play
+
+  cd /home/darren/music/lilypond || printf "\nerr\n\n"
+
+}
