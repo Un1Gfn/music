@@ -26,18 +26,19 @@ upper = \relative c'' {
   \repeat unfold 4 { r1 | }
 
   \resetRelativeOctave c''
-  b8 r8 e8 d4. c8 r8 |
-  b8 r8 c8 b4. a8 r8 |
+  b8^1 r8 e8^4 d4. c8 r8 |
+  b8^1 r8 c8^2 b4.^1 a8_3 r8 |
   g8 r8 a8 g4. e8 r8 |
   e2 r2 |
 
   \resetRelativeOctave c''
-  e8 r8 f8 e4. d8 r8  |
-  c8 r8 d8 c4. b8 r8  |
+  ^"00:12"
+  e8^3 r8 f8 e4. d8 r8  |
+  c8^1 r8 d8^2 c4.^1 b8^3 r8  |
   a8 r8 b8 a4. b8 a8~ | a4 r2. |
 
   % https://lilypond.org/doc/v2.22/Documentation/learning/adding-text
-  ^"00:18"
+  ^"Fm"
   \resetRelativeOctave c''
   e8 r8 f8 e4. d4 | c4 d8 c4. r4 |
   b8 r8 c8 b4. b4 | d2    c2     |
@@ -55,15 +56,15 @@ lower = \fixed c {
   \meta
   \clef "bass"
 
+  ^"*8"
   \repeat unfold 8 { \accompanimentStaccato g,8 c8 < e   g  b  >8 }
 
-  ^"00:12"
+  ^"*4"
   \repeat unfold 4 { \accompanimentStaccato g,8 d8 < f   a  c' >8 }
 
   ^"00:18"
-
-  f8 r8   <gis c' f'>8 r8   g,8 r8   <gis c' f'>8 r8   |
-  f8 r8   <gis c' f'>8 r8   f8  r8   <gis c' f'>8 r8   |
+  f8 r8   <aes c' f'>8 r8   c8 r8   <gis c' f'>8 r8   |
+  f8 r8   <aes c' f'>8 r8   f8  r8   <gis c' f'>8 r8   |
 
     e8 r8   <g b>8 r8     e8 r8   <g b>8 r8   |
   dis8 r8   <g b>8 r8   dis8 r8   <g b>8 r8   |
