@@ -139,7 +139,7 @@ function play {
     # AUR
     "/usr/share/soundfonts/Unison.sf2"
     "/usr/share/soundfonts/GeneralUser.sf2"
-    "/usr/share/soundfonts/Arachno.sf2"
+    # "/usr/share/soundfonts/Arachno.sf2" # scheisse
   )
 
   SF="${SFARR[$((RANDOM%${#SFARR[@]}))]}"

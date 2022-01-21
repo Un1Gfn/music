@@ -7,12 +7,23 @@ meta = {
   \time 4/4
 }
 
+accompanimentStaccato =
+#(define-music-function
+    (x         y         z        )
+    (ly:music? ly:music? ly:music?)
+  #{
+    $y r8
+    $z r8
+    $x r8
+    $z r8
+  #})
+
 upper = \relative c'' {
 
   \meta
   \clef "treble"
 
-  % \repeat unfold 4 { r1 | }
+  \repeat unfold 4 { r1 | }
 
   \resetRelativeOctave c''
   b8 r8 e8 d4. c8 r8 |
@@ -43,14 +54,35 @@ upper = \relative c'' {
 lower = \fixed c {
   \meta
   \clef "bass"
-  % \repeat unfold 6 { c8 r8 <e g b>8 r8 g,8 r8 <e g b>8 r8 | } |
+
+  \repeat unfold 8 { \accompanimentStaccato g,8 c8 < e   g  b  >8 }
+
+  ^"00:12"
+  \repeat unfold 4 { \accompanimentStaccato g,8 d8 < f   a  c' >8 }
+
+  ^"00:18"
+
+  f8 r8   <gis c' f'>8 r8   g,8 r8   <gis c' f'>8 r8   |
+  f8 r8   <gis c' f'>8 r8   f8  r8   <gis c' f'>8 r8   |
+
+    e8 r8   <g b>8 r8     e8 r8   <g b>8 r8   |
+  dis8 r8   <g b>8 r8   dis8 r8   <g b>8 r8   |
+
+  \accompanimentStaccato a,8 d8 <f a>8 |
+  \accompanimentStaccato a,8 d8 <f a>8 |
+
+  g,4 <f g b>4
+  g,4 <f g b>4 |
+
+  g,4 c16 d8. g8 r8 g,8 r8 |
+
 }
 
 \score {
   % https://lilypond.org/doc/v2.22/Documentation/learning/solo-piano
   \new PianoStaff \with { instrumentName = "Piano" } <<
-    \new Staff = "upper" \upper
-    \new Staff = "lower" \lower
+    { \new Staff = "upper" \upper }
+    { \new Staff = "lower" \lower }
   >>
   \layout {}
   \midi {}
