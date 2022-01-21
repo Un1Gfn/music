@@ -181,7 +181,10 @@ function ly {
   printf "\e[32m%s\e[0m\n" "[$(date +%T)]"
 
   rm -fv "$PDF" "$PDF_L"
-  lilypond --pdf -o "$LY" "$LY" || return 2
+  lilypond --pdf -o "$LY" "$LY" || {
+    printf "\e[31m%s\e[0m\n" "err $?"
+    return 0 # make entr happy
+  }
   echo
   ln -sfv "$(realpath "$PDF")" "$PDF_L"
   file "$PDF_L"
