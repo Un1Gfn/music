@@ -6,3 +6,6 @@
 # LilyPond
 /lilypond/*.ly.midi
 /lilypond/*.ly.pdf
+
+# YouTube
+/*.mp4

@@ -1,37 +1,57 @@
 \version "2.22.1"
 
+meta = {
+  % https://en.wikipedia.org/wiki/Tempo
+  \tempo "Vivace" 4 = 170
+  \key c \major
+  \time 4/4
+}
+
+upper = \relative c'' {
+
+  \meta
+  \clef "treble"
+
+  % \repeat unfold 4 { r1 | }
+
+  \resetRelativeOctave c''
+  b8 r8 e8 d4. c8 r8 |
+  b8 r8 c8 b4. a8 r8 |
+  g8 r8 a8 g4. e8 r8 |
+  e2 r2 |
+
+  \resetRelativeOctave c''
+  e8 r8 f8 e4. d8 r8  |
+  c8 r8 d8 c4. b8 r8  |
+  a8 r8 b8 a4. b8 a8~ | a4 r2. |
+
+  % https://lilypond.org/doc/v2.22/Documentation/learning/adding-text
+  ^"00:18"
+  \resetRelativeOctave c''
+  e8 r8 f8 e4. d4 | c4 d8 c4. r4 |
+  b8 r8 c8 b4. b4 | d2    c2     |
+
+  ^"00:23"
+  \resetRelativeOctave c''
+  fis32 g16. r8 d8 c4. r4 |
+  fis32 g16. r8 d8 c4 g'16 a8. <b, dis>8~ |
+  8 r8 <g' ais>8  r8 <g ais>8 r8 <dis gis>8 <d g>8~ |
+  2 r2 |
+
+}
+
+lower = \fixed c {
+  \meta
+  \clef "bass"
+  % \repeat unfold 6 { c8 r8 <e g b>8 r8 g,8 r8 <e g b>8 r8 | } |
+}
+
 \score {
-
-  {
-
-    % https://en.wikipedia.org/wiki/Tempo
-    \tempo "Vivace" 4 = 170
-    \key c \major
-    \time 4/4
-
-    \new PianoStaff <<
-      \new Staff \relative c'' {
-        \clef "treble"
-        r1 |
-        r1 |
-        r1 |
-        r1 |
-        b8 r8 e8 d4. c8 r8 |
-        b8 r8 c8 b4. a8 r8 |
-      } \new Staff \fixed c {
-        \clef "bass"
-        c8 r8 <e g b>8 r8 g,8 r8 <e g b>8 r8 |
-        c8 r8 <e g b>8 r8 g,8 r8 <e g b>8 r8 |
-        c8 r8 <e g b>8 r8 g,8 r8 <e g b>8 r8 |
-        c8 r8 <e g b>8 r8 g,8 r8 <e g b>8 r8 |
-        c8 r8 <e g b>8 r8 g,8 r8 <e g b>8 r8 |
-        c8 r8 <e g b>8 r8 g,8 r8 <e g b>8 r8 |
-      }
-    >>
-
-  }
-
-  \layout{}
-  \midi{}
-
-} 
+  % https://lilypond.org/doc/v2.22/Documentation/learning/solo-piano
+  \new PianoStaff \with { instrumentName = "Piano" } <<
+    \new Staff = "upper" \upper
+    \new Staff = "lower" \lower
+  >>
+  \layout {}
+  \midi {}
+}
