@@ -146,11 +146,15 @@ function play {
   printf ": using soundbank \e[32m%s\e[0m\n" "$SF"
   echo
 
-  alacritty.sh "${FUNCNAME[0]}()"
+  alacrittytitle.sh "${FUNCNAME[0]}()"
 
   # /etc/timidity/timidity.cfg
-  timidity -c <(echo "soundfont $SF") "$1.ly.midi"
+  timidity -c <(echo "soundfont $SF") -ik -OsS "$1.ly.midi"
+
   echo
+
+  # return
+  # timidity -c <(echo "soundfont /usr/share/soundfonts/Unison.sf2") -ik -OsS /tmp/moonlight1.mid
 
 }
 
@@ -176,6 +180,7 @@ function ly {
 
   printf "\e[32m%s\e[0m\n" "[$(date +%T)]"
 
+  rm -fv "$PDF" "$PDF_L"
   lilypond --pdf -o "$LY" "$LY" || return 2
   echo
   ln -sfv "$(realpath "$PDF")" "$PDF_L"
