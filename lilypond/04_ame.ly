@@ -64,63 +64,66 @@ lowerMain = \fixed c {
 
 upperSub = {
   \fixed c' {
-    _"#42"
+    _"%42"
     \repeat unfold 2 { <c g >8 r8 <c g >8 r8 <c   fis>8 r8 <c   fis>8 r8 | <  c c'>4 <  c c'>8. <b, b>4 r4 r16 | }
                        <c c'>8 r8 <c c'>8 r8 <c   c' >8 r8 <c   c' >8 r8 | <  c c'>4 <  c c'>8. <b, b>4 r4 r16 |
                        <g c'>8 r8 <g c'>8 r8 <fis c' >8 r8 <fis c' >8 r8 | <f a c'>4 <f a c'>8. <f  b>4 r4 r16 |
   }
-  \relative c'' {
-    _"#50"
-    r4 <g' c,>4 <e c>8. dis16 <d b>8. <c a>16 |
-    <b g>8. <a f>4 <g e>4 <g e>4 fis16 |
-    f8. e16 f8. g16 f8. c4 gis'16 |
-    <a f>2 r2 |
+  \fixed c' {
+    r4 <g' c'>4 <e' c'>8. dis'16 <d' b>8. <c' a>16 | %50
+    <b g>8. <a f>4 <g e>4 <g e>4 fis16 | %51
+    f8. e16 f8. g16 f8. c4 gis16( | %52
+    <a f>2) r2 | %53
   }
   \fixed c' {
-    _"#54"
-    r8. fis'16 <g'>4 <f'>8. <e'>16 <d'>8. <c'>16 |
-    b8. a4 a4 a16 b4 |
-    r8. a16 b8. c'16 d'8. b16 a8. b16 |
-    a8. g4 e16~2 |
+    r8. fis'16( <g' b>4) <f' a>8. <e' g>16 <d' f>8. <c' e>16 | %54
+    <b g>8. <a f>4 <a f>4 a16( <b f>4) | %55
+    r8. a16 <b f>8. c'16 <d' b>8. b16 <a f>8. b16 | %56
+    <a f>8. g4 <e c>16~2 | %57
   }
   \fixed c' {
-    _"#58"
-    r4 g'4 e'8. dis'16 d'8. c'16 |
-    b8. a4 g4 e16 g4 |
-    r4 e16 f8 fis16 g8. e16 g8. e16 |
-    g4 e8. f2 r16 |
+    r4 <g' d'>4 <e' c'>8. dis'16 <d' b>8. <c' a>16 | %58
+    <b g>8. <a f>4 <g e>4 e16 g4 | %59
+    r4 <e g>16 f8 fis16 g8. e16 <cis g>8. e16 | %60
+    g4 e8. <f d>2 r16 | %61
   }
   \fixed c' {
-    _"#62"
-    r4 d16 e8 f16 a8. a4 gis16 |
-    g4 g8. g4 bes4 a16 |
-    g4 f8. f4 r4 f16 |
-    g4 g8. g4 fis16~4 |
+    r4 d16 e8 f16 <a d>8. <a d>4 <gis d>16 | %62
+    <g e>4 <g e>8. <g e>4 <bes e>4 a16 | %63
+    <g e>4 <f c>8. <f c>4 r4 f16 | %64
+    g4 <g d>8. <g e>4 <ges ees>16~4 | %65
   }
-  % #66~#69 #70
   \fixed c' {
-    _"#66"
-    r4 d16 e8 f16 g8. g4 g16 |
-    r4 g8. g4 bes8. a4 a4 a8 a4 r8 c8~1 |
+    r4 d16 e8 f16 <g d>8. <g d>4 <g d>16 | %66
+    r4 <g d>8. <g d>4 <bes f d>8. <a f c>4 <a f c>4 <a f c>8 <a f>4 r8 c8~1 | %67 %68 %69
   }
-
+  \fixed c' {
+    {
+      <g' d'>4 <g' d'> <fis' ais> <fis' ais> | <f' c' a>8. <f' c' a>4 <f' c' a>4 c16(   b,4) | %70 %71
+    } \repeat unfold 2 {
+      <g' b >4 <g' b > <fis' ais> <fis' ais> | <f' c' a>8. <f' c' a>4 <g' d' b>4 cis16( d4)  | %72 %73 %rep1 / %76 %77 %rep2
+    } \alternative { {
+      <g' d' b>4 <g' d'> <fis' ais> <fis' ais> | <f' c' a>8. <f' c' a>4 <f' c' a>4 c16(   b,4) | %74 %75 %alt1
+    } {
+      r2 g2 | fis'16 g'8. r2. | %78 %79 %alt2
+    } }
+  }
 }
 
 lowerSub = \fixed c {
-  % 00:51
-  \repeat unfold 3 { e8 r8 <e g>8 r8 <dis fis>8 r8 <dis fis>8 r8 | <d f>4 <d f>8. <g, d f>4 g,16 g4 | }
-  % 00:59
-                     e8 r8 <e g>8 r8 <dis fis>8 r8 <dis fis>8 r8 | <d f a>4 <d f a>8. <g, d g>4 g16 f4 |
-  % 01:02
-  \repeat unfold 2 { c8 r8 <g c'>8 r8 g,8 r8 <g c'>8 r8 | }
-  \repeat unfold 5 { d8 r8 <f a >8 r8 g,8 r8 <f a >8 r8 | }
-  \repeat unfold 4 { c8 r8 <e g >8 r8 g,8 r8 <e g >8 r8 | }
-                     d8 r8 <f a >8 r8 a,8 r8 <f a >8 r8 |
-
-  d8 r8 <f a>8 r8 d8  r8 <dis a>8 r8 |
-  d8 r8 <f a>8 r8 a,8 r8 <g ais>8 r8 |
-  d8 r8 <f a>8 r8 g,8 r8 <f a>4 | % 64
-
+  % Hammer
+  \repeat unfold 3 { e8 r8 <e g>8 r8 <dis fis>8 r8 <dis fis>8 r8 | <d f>4   <d f>8.   <g, d f>4 g,16(g4) | } %42 %43 %44 %45 %46 %47 
+                   { e8 r8 <e g>8 r8 <dis fis>8 r8 <dis fis>8 r8 | <d f a>4 <d f a>8. <g, d g>4 g16(f4)  | } %48 %49
+  % Melody
+  \repeat unfold 2 { c8 r8 <g c'  >8 r8 g,8 r8 <g c'  >8 r8 | } %50 %51
+  \repeat unfold 5 { d8 r8 <f a   >8 r8 g,8 r8 <f a   >8 r8 | } %52 %53 %54 %55 %56
+                   { c8 r8 <e g   >8 r8 g,8 r8 <e g   >8 r8  | } %57
+  \repeat unfold 2 { c8 r8 <e g c'>8 r8 g,8 r8 <e g c'>8 r8  | } %58 %59
+                   { c8 r8 <e g c'>8 r8 g,8 r8 <e g   >8 r8 | } %60
+                   { d8 r8 <f a   >8 r8 a,8 r8 <f a   >8 r8 | } %61
+                   { d8 r8 <f a   >8 r8 d8  r8 <dis a >8 r8 | } %62
+                   { d8 r8 <f a   >8 r8 a,8 r8 <g ais >8 r8 | } %63
+                   { d8 r8 <f a   >8 r8 g,8 r8 <f a   >4 | } %64
 }
 
 upper = \relative c'' {
@@ -154,6 +157,9 @@ upper = \relative c'' {
   % Sub
   _"sub"
   \upperSub
+
+  % Main2
+  % \upperMainComplex
 
 }
 
@@ -198,6 +204,9 @@ lower = \fixed c {
 
   % Sub
   \lowerSub
+
+  % Main2
+  % \lowerMainComplex
 
 }
 
