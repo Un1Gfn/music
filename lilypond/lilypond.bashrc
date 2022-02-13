@@ -165,7 +165,8 @@ function ly {
 
   local MIDI="./$1.ly.midi"
   local PDF="./$1.ly.pdf"
-  local PDF_L="/tmp/un1gfn.github.io/current_sheet.pdf"
+  local PDF_L1="/tmp/un1gfn.github.io/current_sheet.pdf"
+  local PDF_L2="/home/darren/cgi/cgi-tmp/current_sheet.pdf"
 
   local WAV="/tmp/$1.wav"
   # local WAV="/tmp/$1.$(uuidgen).wav" # Random name so that mpv can't remember
@@ -176,18 +177,20 @@ function ly {
   # Don't remove $PDF - avoid deadlink current_sheet.pdf
   # Do remove $WAV - write to new inode instead of overwriting - avoid [ffmpeg/demuxer] wav: Packet corrupt (stream = 0, dts = NOPTS).
   # https://stackoverflow.com/q/3141738/duplicating-stdout-to-stderr
-  [ -n "$(rm -fv "$MIDI" "$PDF_L" "$WAV" | tee >(cat 1>&2) )" ] && echo
+  [ -n "$(rm -fv "$MIDI" "$PDF_L1" "$PDF_L2" "$WAV" | tee >(cat 1>&2) )" ] && echo
 
   printf "\e[32m%s\e[0m\n" "[$(date +%T)]"
 
-  rm -fv "$PDF" "$PDF_L"
+  rm -fv "$PDF" "$PDF_L1" "$PDF_L2"
   lilypond --pdf -o "$LY" "$LY" || {
     printf "\e[31m%s\e[0m\n" "err $?"
     return 0 # make entr happy
   }
   echo
-  ln -sfv "$(realpath "$PDF")" "$PDF_L"
-  file "$PDF_L"
+  for l in "$PDF_L1" "$PDF_L2"; do
+    ln -sfv "$(realpath "$PDF")" "$l"
+    file "$l"
+  done
   echo
 
 }
