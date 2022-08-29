@@ -5,6 +5,7 @@ meta = {
   \tempo "Vivace" 4 = 170
   \key c \major
   \time 4/4
+  % https://lilypond.org/doc/v2.23/Documentation/notation/bars#bar-numbers
   \override Score.BarNumber.break-visibility = ##(#t #t #t)
 }
 
@@ -130,7 +131,9 @@ upper = \relative c'' {
 
   \meta
   \clef "treble"
+  \numericTimeSignature \time 4/4
 
+  % https://lilypond.org/doc/v2.22/Documentation/notation/short-repeats#percent-repeats
   \repeat percent 5 { r1 }
 
   \repeat unfold 4 { r1 | }
@@ -166,7 +169,9 @@ upper = \relative c'' {
 lower = \fixed c {
   \meta
   \clef "bass"
+  \numericTimeSignature \time 4/4
 
+  % https://lilypond.org/doc/v2.22/Documentation/notation/short-repeats#percent-repeats
   \repeat percent 5 { r1 }
 
   % Intro
@@ -211,6 +216,8 @@ lower = \fixed c {
 }
 
 \score {
+
+
   % https://lilypond.org/doc/v2.22/Documentation/learning/solo-piano
   \new PianoStaff \with { instrumentName = "Piano" } <<
     { \new Staff = "upper" \upper }
