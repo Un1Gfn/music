@@ -16,7 +16,7 @@ build: | $(O)
 
 run: build
 	file in.txt
-	$(O)/hangul-rr <in.txt
+	$(O)/hangul-rr <in.txt >out.tmp.txt
 
 valgrind: build
 	file in.txt

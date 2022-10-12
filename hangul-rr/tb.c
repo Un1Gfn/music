@@ -74,10 +74,10 @@ const TB tb_f[]={
   { ILL  , L'ㄽ' },
   { ILL  , L'ㄾ' },
   { ILL  , L'ㄿ' },
-  { ILL  , L'ㅀ' },
+  { "lt" , L'ㅀ' }, // I:rh F:lt
   { "m"  , L'ㅁ' },
   { "p"  , L'ㅂ' },
-  { ILL  , L'ㅄ' },
+  { "ps" , L'ㅄ' }, // I:bs F:pt // https://en.wiktionary.org/wiki/%E3%85%84
   { "t"  , L'ㅅ' },
   { "t"  , L'ㅆ' },
   { "ng" , L'ㅇ' },
@@ -109,30 +109,35 @@ void tb_romanize(const wint_t hangul){
   wprintf(L"%lc   ", hangul);
   // wprintf(L"%2d %2d %2d ", initial, medial, final);
   fflush(stdout);
-  assert(ILL!=tb_f[final].r);
 
-  // if(NE!=tb_f[final].r){
-  //   wprintf(L"%lc%lc%lc ", tb_i[initial].j, tb_m[medial].j, tb_f[final].j);
-  //   wprintf(L"%s%s%s ", tb_i[initial].r, tb_m[medial].r, tb_f[final].r);
-  // }else{
-  //   wprintf(L"%lc%lc ", tb_i[initial].j, tb_m[medial].j);
-  //   wprintf(L"%s%s ", tb_i[initial].r, tb_m[medial].r);
-  // }
+  /*if(NE!=tb_f[final].r){
+    wprintf(L"%lc%lc%lc ", tb_i[initial].j, tb_m[medial].j, tb_f[final].j);
+    // wprintf(L"%s%s%s ", tb_i[initial].r, tb_m[medial].r, tb_f[final].r);
+  }else{
+    wprintf(L"%lc%lc ", tb_i[initial].j, tb_m[medial].j);
+    // wprintf(L"%s%s ", tb_i[initial].r, tb_m[medial].r);
+  }*/
 
-  const char *ir=tb_i[initial].r;
-  const char *mr=tb_m[medial].r;
-  const char *fr=tb_f[final].r;
-  // initial
-  if(IHT==tb_i[initial].r) wprintf(L"%s", tb_previous_ending_consonant);
-  else                     wprintf(L"%s", ir);
+  {
 
-  // medial
-  wprintf(L"%s", mr);
+    const char *ir=tb_i[initial].r;
+    const char *mr=tb_m[medial].r;
+    const char *fr=tb_f[final].r;
+    assert(ILL!=fr);
 
-  // final
-  if(NE!=tb_f[final].r){
-    wprintf(L"%s", fr);
-    tb_previous_ending_consonant=fr;
+    // initial
+    if(IHT==tb_i[initial].r) wprintf(L"%s", tb_previous_ending_consonant);
+    else                     wprintf(L"%s", ir);
+
+    // medial
+    wprintf(L"%s", mr);
+
+    // final
+    if(NE!=tb_f[final].r){
+      wprintf(L"%s", fr);
+      tb_previous_ending_consonant=fr;
+    }
+
   }
 
   wprintf(L" ");

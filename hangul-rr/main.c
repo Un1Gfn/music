@@ -5,12 +5,14 @@
 #include <stdlib.h>
 #include <wchar.h>
 #include <wctype.h>
+#include <stdbool.h>
 
 #include "tb.h"
 
 int main(){
 
   wint_t wc=0;
+  bool breakword=false;
 
   static_assert(16==MB_LEN_MAX);
   assert(setlocale(LC_ALL,"ko_KR.UTF-8"));
@@ -41,8 +43,12 @@ int main(){
       #define INDT "               "
 
       if(tb_issyllable(wc)){
+        // if(!breakword)
+        //   wprintf("-");
+        breakword=false;
         tb_romanize(wc);
       }else{
+        breakword=true;
         tb_previous_ending_consonant=empty; // ="";
         if(L'\n'==wc)
           wprintf(L""INDT"(\\n)");
