@@ -106,9 +106,10 @@ void tb_romanize(const wint_t hangul){
   medial=final/28; final%=28;
 
   assert(hangul == initial*588 + medial*28 + final + 44032);
-  wprintf(L"%lc   ", hangul);
+
+  // wprintf(L"%lc   ", hangul);
   // wprintf(L"%2d %2d %2d ", initial, medial, final);
-  fflush(stdout);
+  // fflush(stdout);
 
   /*if(NE!=tb_f[final].r){
     wprintf(L"%lc%lc%lc ", tb_i[initial].j, tb_m[medial].j, tb_f[final].j);
@@ -123,7 +124,7 @@ void tb_romanize(const wint_t hangul){
     const char *ir=tb_i[initial].r;
     const char *mr=tb_m[medial].r;
     const char *fr=tb_f[final].r;
-    assert(ILL!=fr);
+    fflush(stdout); assert(ILL!=fr);
 
     // initial
     if(IHT==tb_i[initial].r) wprintf(L"%s", tb_previous_ending_consonant);
@@ -140,7 +141,7 @@ void tb_romanize(const wint_t hangul){
 
   }
 
-  wprintf(L" ");
+  // wprintf(L" ");
 
   fflush(stdout);
   assert(initial<=TB_I_N);

@@ -12,18 +12,19 @@
 int main(){
 
   wint_t wc=0;
-  bool breakword=false;
+  bool breakword=true;
 
   static_assert(16==MB_LEN_MAX);
   assert(setlocale(LC_ALL,"ko_KR.UTF-8"));
   assert(6==MB_CUR_MAX);
 
-  const wint_t *const split=L"------ -------- ------- ---------------------";
-  wprintf(L"%ls\n", split);
-  wprintf(L"    #   UTF-32    DEC    glyph \n");
-  wprintf(L"%ls\n", split);
+  // const wint_t *const split=L"------ -------- ------- ---------------------";
+  // wprintf(L"%ls\n", split);
+  // wprintf(L"    #   UTF-32    DEC    glyph \n");
+  // wprintf(L"%ls\n", split);
 
-  for(int i=1; 1; ++i){
+  // for(int i=1; 1; ++i){
+  for(;;){
     wc=getwchar();
     // printf("%d\n", wc);
     if(WEOF==wc){
@@ -31,39 +32,40 @@ int main(){
       break;
     }else{
 
-      assert(1000>=i);
-      wprintf(L" ");
-      wprintf(L"%4d   ", i);
+      // assert(1000>=i);
+      // wprintf(L" ");
+      // wprintf(L"%4d   ", i);
 
-      assert(0x0001<=wc&&wc<=0xFFFF);
-      _Static_assert(65535==0xFFFF, "");
-      wprintf(L"0x%04X   %5d   ", wc, wc);
+      // assert(0x0001<=wc&&wc<=0xFFFF);
+      // _Static_assert(65535==0xFFFF, "");
+      // wprintf(L"0x%04X   %5d   ", wc, wc);
 
       // wctype_t chk=wctype("print");
-      #define INDT "               "
+      // #define INDT "               "
 
       if(tb_issyllable(wc)){
-        // if(!breakword)
-        //   wprintf("-");
+        if(!breakword)
+          wprintf(L"-");
         breakword=false;
         tb_romanize(wc);
       }else{
         breakword=true;
         tb_previous_ending_consonant=empty; // ="";
-        if(L'\n'==wc)
-          wprintf(L""INDT"(\\n)");
-        else if(L' '==wc)
-          wprintf(L""INDT"( )");
-        else if(33<=wc&&wc<=126)
-            wprintf(L""INDT"(%lc)", wc);
+        wprintf(L"%lc", wc);
+        // if(L'\n'==wc)
+        //   wprintf(L""INDT"(\\n)");
+        // else if(L' '==wc)
+        //   wprintf(L""INDT"( )");
+        // else if(33<=wc&&wc<=126)
+        //     wprintf(L""INDT"(%lc)", wc);
       }
 
-      wprintf(L"\n");
+      // wprintf(L"\n");
 
     }
   }
 
-  wprintf(L"%ls\n", split);
+  // wprintf(L"%ls\n", split);
 
   return 0;
 
