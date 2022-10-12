@@ -21,7 +21,5 @@ extern const TB tb_m[];
 extern const TB tb_f[];
 
 // public functions
-extern const char *const empty;
-extern const char *tb_previous_ending_consonant;
-void tb_romanize(const wint_t); 
+void tb_emit(const int, const int, const int, const bool);
 bool tb_issyllable(const wint_t);

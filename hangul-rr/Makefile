@@ -1,7 +1,7 @@
 O:=builddir
 N:=ninja -j4 -v -C $(O)
 
-default: run
+default: build
 
 $(O):
 	@echo "/Makefile --> /meson.build --> /builddir/build.ninja"
@@ -16,7 +16,9 @@ build: | $(O)
 
 run: build
 	file in.txt
-	$(O)/hangul-rr <in.txt >out.tmp.txt
+	>out.tmp.txt
+# 	$(O)/hangul-rr <in.txt >out.tmp.txt
+	$(O)/hangul-rr <in.txt
 
 valgrind: build
 	file in.txt

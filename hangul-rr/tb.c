@@ -93,60 +93,26 @@ _Static_assert(TB_I_N+1==sizeof(tb_i)/sizeof(TB), "");
 _Static_assert(TB_M_N+1==sizeof(tb_m)/sizeof(TB), "");
 _Static_assert(TB_F_N+1==sizeof(tb_f)/sizeof(TB), "");
 
-const char *const empty="";
-const char *tb_previous_ending_consonant=empty;
-void tb_romanize(const wint_t hangul){
+void tb_emit(const int cFprev, const int cI, const int cM, const bool breakword){
 
-  wint_t initial=0, medial=0, final=0;
+    const char *rFp=tb_f[cFprev].r;
+    const char *rI=tb_i[cI].r;
+    const char *rM=tb_m[cM].r;
+    fflush(stdout); assert(ILL!=rFp);
 
-  assert(tb_issyllable(hangul));
-
-  final=hangul-44032;
-  initial=final/588; final%=588;
-  medial=final/28; final%=28;
-
-  assert(hangul == initial*588 + medial*28 + final + 44032);
-
-  // wprintf(L"%lc   ", hangul);
-  // wprintf(L"%2d %2d %2d ", initial, medial, final);
-  // fflush(stdout);
-
-  /*if(NE!=tb_f[final].r){
-    wprintf(L"%lc%lc%lc ", tb_i[initial].j, tb_m[medial].j, tb_f[final].j);
-    // wprintf(L"%s%s%s ", tb_i[initial].r, tb_m[medial].r, tb_f[final].r);
-  }else{
-    wprintf(L"%lc%lc ", tb_i[initial].j, tb_m[medial].j);
-    // wprintf(L"%s%s ", tb_i[initial].r, tb_m[medial].r);
-  }*/
-
-  {
-
-    const char *ir=tb_i[initial].r;
-    const char *mr=tb_m[medial].r;
-    const char *fr=tb_f[final].r;
-    fflush(stdout); assert(ILL!=fr);
-
-    // initial
-    if(IHT==tb_i[initial].r) wprintf(L"%s", tb_previous_ending_consonant);
-    else                     wprintf(L"%s", ir);
-
-    // medial
-    wprintf(L"%s", mr);
-
-    // final
-    if(NE!=tb_f[final].r){
-      wprintf(L"%s", fr);
-      tb_previous_ending_consonant=fr;
+    // nosp
+    {
+      wprintf(L"%s", NE==rFp ? "" : rFp); // previous final
+      wprintf(breakword?L"":L"-");
+      wprintf(L"%s", IHT==rI ? (NE==rFp?"":rFp) : rI); // initial
     }
 
-  }
+    // sp
+    // {
+    //   // ...
+    // }
 
-  // wprintf(L" ");
-
-  fflush(stdout);
-  assert(initial<=TB_I_N);
-  assert(medial<=TB_M_N);
-  assert(final<=TB_F_N);
+    wprintf(L"%s", rM); // medial
 
 }
 

@@ -9,63 +9,51 @@
 
 #include "tb.h"
 
+static inline void splithg(int *initial, int *medial, int *final, const wint_t hangul){
+  (*final)=hangul-44032;
+  (*initial)=(*final)/588; (*final)%=588;
+  (*medial)=(*final)/28; (*final)%=28;
+  assert(*initial<=TB_I_N);
+  assert(*medial<=TB_M_N);
+  assert(*final<=TB_F_N);
+  assert((long long)hangul == (*initial)*588 + (*medial)*28 + (*final) + 44032);
+}
+
 int main(){
 
-  wint_t wc=0;
-  bool breakword=true;
+  // define
+  wint_t wc=-1;
+  int cFprev=-1, cI=-1, cM=-1, cF=-1;
+  bool breakword=-1;
 
   static_assert(16==MB_LEN_MAX);
   assert(setlocale(LC_ALL,"ko_KR.UTF-8"));
   assert(6==MB_CUR_MAX);
 
-  // const wint_t *const split=L"------ -------- ------- ---------------------";
-  // wprintf(L"%ls\n", split);
-  // wprintf(L"    #   UTF-32    DEC    glyph \n");
-  // wprintf(L"%ls\n", split);
+  wprintf(L".\n");
 
-  // for(int i=1; 1; ++i){
-  for(;;){
-    wc=getwchar();
-    // printf("%d\n", wc);
-    if(WEOF==wc){
-      assert(feof(stdin));
-      break;
-    }else{
+  // init
+  breakword=true;
+  cFprev=0;
 
-      // assert(1000>=i);
-      // wprintf(L" ");
-      // wprintf(L"%4d   ", i);
+  while(WEOF!=(wc=getwchar())){
 
-      // assert(0x0001<=wc&&wc<=0xFFFF);
-      // _Static_assert(65535==0xFFFF, "");
-      // wprintf(L"0x%04X   %5d   ", wc, wc);
-
-      // wctype_t chk=wctype("print");
-      // #define INDT "               "
-
-      if(tb_issyllable(wc)){
-        if(!breakword)
-          wprintf(L"-");
-        breakword=false;
-        tb_romanize(wc);
-      }else{
-        breakword=true;
-        tb_previous_ending_consonant=empty; // ="";
-        wprintf(L"%lc", wc);
-        // if(L'\n'==wc)
-        //   wprintf(L""INDT"(\\n)");
-        // else if(L' '==wc)
-        //   wprintf(L""INDT"( )");
-        // else if(33<=wc&&wc<=126)
-        //     wprintf(L""INDT"(%lc)", wc);
-      }
-
-      // wprintf(L"\n");
-
+    if(!tb_issyllable(wc)){
+      if((!breakword) && cFprev) wprintf(L"%s", tb_f[cFprev].r);
+      breakword=true;
+      cFprev=0;
+      wprintf(L"%lc", wc);
+      continue;
     }
+
+    splithg(         /*-*/ &cI, &cM, &cF, /*-*/ wc);
+    tb_emit( cFprev, /*-*/  cI,  cM,      breakword);
+    breakword=false;
+    cFprev=cF; cF=-1;
+
   }
 
-  // wprintf(L"%ls\n", split);
+  assert(feof(stdin));
 
   return 0;
 
