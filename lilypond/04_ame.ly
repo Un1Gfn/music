@@ -215,14 +215,19 @@ lower = \fixed c {
 
 }
 
-\score {
+\book{
 
+  % http://lilypond.org/doc/v2.22/Documentation/notation/creating-titles-headers-and-footers
+  \header { tagline = ##f }
 
-  % https://lilypond.org/doc/v2.22/Documentation/learning/solo-piano
-  \new PianoStaff \with { instrumentName = "Piano" } <<
-    { \new Staff = "upper" \upper }
-    { \new Staff = "lower" \lower }
-  >>
-  \layout {}
-  \midi {}
+  \score {
+    % https://lilypond.org/doc/v2.22/Documentation/learning/solo-piano
+    \new PianoStaff \with { instrumentName = "Piano" } <<
+      { \new Staff = "upper" \upper }
+      { \new Staff = "lower" \lower }
+    >>
+    \layout {}
+    \midi {}
+  }
+
 }
