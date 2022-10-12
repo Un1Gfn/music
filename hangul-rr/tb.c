@@ -1,7 +1,18 @@
-// #include <stdbool.h>
+#include <assert.h>
+#include <stdio.h>
+
 #include "tb.h"
 
-const JR tb_i[]={
+// no final consonant, CV instead of CVC
+#define NE  (void*)0
+
+// initial consonant inherits final consonant pf revious syllable
+#define IHT (void*)-1
+
+// obselete consonant
+#define ILL (void*)-2
+
+const TB tb_i[]={
   { "g"  , L'ㄱ' },
   { "kk" , L'ㄲ' },
   { "n"  , L'ㄴ' },
@@ -13,7 +24,7 @@ const JR tb_i[]={
   { "pp" , L'ㅃ' },
   { "s"  , L'ㅅ' },
   { "ss" , L'ㅆ' },
-  { "."  , L'ㅇ' },
+  { IHT  , L'ㅇ' },
   { "j"  , L'ㅈ' },
   { "jj" , L'ㅉ' },
   { "ch" , L'ㅊ' },
@@ -23,7 +34,7 @@ const JR tb_i[]={
   { "h"  , L'ㅎ' }
 };
 
-const JR tb_m[]={
+const TB tb_m[]={
   { "a"   , L'ㅏ' },
   { "ae"  , L'ㅐ' },
   { "ya"  , L'ㅑ' },
@@ -47,26 +58,26 @@ const JR tb_m[]={
   { "i"   , L'ㅣ' }
 };
 
-const JR tb_f[]={
-  { "."  , L' ' },
+const TB tb_f[]={
+  { NE   , L'\0' },
   { "k"  , L'ㄱ' },
   { "k"  , L'ㄲ' },
-  { "?"  , L'ㄳ' },
+  { ILL  , L'ㄳ' },
   { "n"  , L'ㄴ' },
-  { "?"  , L'ㄵ' },
-  { "?"  , L'ㄶ' },
+  { ILL  , L'ㄵ' },
+  { ILL  , L'ㄶ' },
   { "t"  , L'ㄷ' },
   { "l"  , L'ㄹ' },
-  { "?"  , L'ㄺ' },
-  { "?"  , L'ㄻ' },
-  { "?"  , L'ㄼ' },
-  { "?"  , L'ㄽ' },
-  { "?"  , L'ㄾ' },
-  { "?"  , L'ㄿ' },
-  { "?"  , L'ㅀ' },
+  { ILL  , L'ㄺ' },
+  { ILL  , L'ㄻ' },
+  { ILL  , L'ㄼ' },
+  { ILL  , L'ㄽ' },
+  { ILL  , L'ㄾ' },
+  { ILL  , L'ㄿ' },
+  { ILL  , L'ㅀ' },
   { "m"  , L'ㅁ' },
   { "p"  , L'ㅂ' },
-  { "?"  , L'ㅄ' },
+  { ILL  , L'ㅄ' },
   { "t"  , L'ㅅ' },
   { "t"  , L'ㅆ' },
   { "ng" , L'ㅇ' },
@@ -78,8 +89,61 @@ const JR tb_f[]={
   { "t"  , L'ㅎ' }
 };
 
-_Static_assert(TB_I_N+1==sizeof(tb_i)/sizeof(JR), "");
-_Static_assert(TB_M_N+1==sizeof(tb_m)/sizeof(JR), "");
-_Static_assert(TB_F_N+1==sizeof(tb_f)/sizeof(JR), "");
+_Static_assert(TB_I_N+1==sizeof(tb_i)/sizeof(TB), "");
+_Static_assert(TB_M_N+1==sizeof(tb_m)/sizeof(TB), "");
+_Static_assert(TB_F_N+1==sizeof(tb_f)/sizeof(TB), "");
 
-// bool 
+const char *const empty="";
+const char *tb_previous_ending_consonant=empty;
+void tb_romanize(const wint_t hangul){
+
+  wint_t initial=0, medial=0, final=0;
+
+  assert(tb_issyllable(hangul));
+
+  final=hangul-44032;
+  initial=final/588; final%=588;
+  medial=final/28; final%=28;
+
+  assert(hangul == initial*588 + medial*28 + final + 44032);
+  wprintf(L"%lc   ", hangul);
+  // wprintf(L"%2d %2d %2d ", initial, medial, final);
+  fflush(stdout);
+  assert(ILL!=tb_f[final].r);
+
+  // if(NE!=tb_f[final].r){
+  //   wprintf(L"%lc%lc%lc ", tb_i[initial].j, tb_m[medial].j, tb_f[final].j);
+  //   wprintf(L"%s%s%s ", tb_i[initial].r, tb_m[medial].r, tb_f[final].r);
+  // }else{
+  //   wprintf(L"%lc%lc ", tb_i[initial].j, tb_m[medial].j);
+  //   wprintf(L"%s%s ", tb_i[initial].r, tb_m[medial].r);
+  // }
+
+  const char *ir=tb_i[initial].r;
+  const char *mr=tb_m[medial].r;
+  const char *fr=tb_f[final].r;
+  // initial
+  if(IHT==tb_i[initial].r) wprintf(L"%s", tb_previous_ending_consonant);
+  else                     wprintf(L"%s", ir);
+
+  // medial
+  wprintf(L"%s", mr);
+
+  // final
+  if(NE!=tb_f[final].r){
+    wprintf(L"%s", fr);
+    tb_previous_ending_consonant=fr;
+  }
+
+  wprintf(L" ");
+
+  fflush(stdout);
+  assert(initial<=TB_I_N);
+  assert(medial<=TB_M_N);
+  assert(final<=TB_F_N);
+
+}
+
+bool tb_issyllable(const wint_t wc){
+  return (0xAC00<=wc&&wc<=0xD7AF);
+}
