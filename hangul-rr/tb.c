@@ -2,6 +2,7 @@
 #include <stdio.h>
 
 #include "tb.h"
+#include "sp.h"
 
 // no final consonant, CV instead of CVC
 #define NE  (void*)0
@@ -100,19 +101,39 @@ void tb_emit(const int cFprev, const int cI, const int cM, const bool breakword)
     const char *rM=tb_m[cM].r;
     fflush(stdout); assert(ILL!=rFp);
 
-    // nosp
+#ifdef DISABLE_SP
+
     {
-      wprintf(L"%s", NE==rFp ? "" : rFp); // previous final
-      wprintf(breakword?L"":L"-");
-      wprintf(L"%s", IHT==rI ? (NE==rFp?"":rFp) : rI); // initial
+      wprintf(L"%s", NE==rFp ? "" : rFp);              // [cFprev]-cIcM
+      wprintf(breakword?L"":L"-");                     // cFprev[-]cIcM
+      wprintf(L"%s", IHT==rI ? (NE==rFp?"":rFp) : rI); // cFprev-[cI]cM
     }
 
-    // sp
-    // {
-    //   // ...
-    // }
+#else
 
-    wprintf(L"%s", rM); // medial
+    {
+
+      const SP *sp=sp_lk(cFprev,cI);
+
+      // [cFprev]-cIcM
+      wprintf(L"%s", sp->x ? sp->x : ((NE==rFp)?"":rFp));
+
+      // cFprev[-]cIcM
+      wprintf(breakword?L"":L"-");
+
+      // cFprev-[cI]cM
+      if(IHT==rI){
+        assert(!sp->x);
+        wprintf(L"%s", sp->y ? sp->y : ((NE==rFp)?"":rFp));
+      }else{
+        wprintf(L"%s", sp->y ? sp->y : rI);
+      }
+
+    }
+
+#endif
+
+    wprintf(L"%s", rM); // cFprev-cI[cM]
 
 }
 

@@ -18,6 +18,7 @@ project('hangul-rr', 'c',
 )
 
 add_global_arguments('-D_GNU_SOURCE',
+                     # '-DDISABLE_SP',
                      '-Wdeprecated-declarations',
                      '-Winline',
                      '-Wno-pedantic',
@@ -31,6 +32,7 @@ add_global_arguments('-D_GNU_SOURCE',
 executable(meson.project_name(),
   'main.c',
   'tb.c',
+  'sp.c',
   # dependencies: [
   #   dependency(''),
   # ]
