@@ -7,18 +7,24 @@
 
 #define TB_I_N 18
 #define TB_M_N 20
-#define TB_F_N 27
+#define TBB_F_N 27
 
 typedef struct {
-  const char *const r; // roman
+  const char *const r; // romaja
   const wint_t      j; // jamo
 } TB;
 
+typedef struct {
+  const char *const ri; // romaja initial (IHT)
+  const char *const rf; // romaja final
+  const wint_t      j; // jamo
+} TBB;
+
 // global variables
 
-extern const TB tb_i[];
-extern const TB tb_m[];
-extern const TB tb_f[];
+extern const TB  tb_i[];
+extern const TB  tb_m[];
+extern const TBB tb_f[];
 
 // public functions
 void tb_emit(const int, const int, const int, const bool);
