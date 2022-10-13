@@ -5,14 +5,13 @@
 #include "tb.h"
 #include "sp.h"
 
-// no final consonant, CV instead of CVC
-const char *const NE=(void*)0;
+// #define CONNECT L"."
+// #define CONNECT L"-"
+#define CONNECT L"_"
 
-// initial consonant inherits final consonant pf revious syllable
-const char *const IHT=(void*)-1;
-
-// obselete consonant
-const char *const ILL=(void*)-2;
+#define NE (void*)0   // no final consonant, CV instead of CVC
+#define IHT (void*)-1 // initial consonant inherits final consonant pf revious syllable
+#define ILL (void*)-2 // obselete consonant
 
 const TB tb_i[]={
   { "g"  , L'ㄱ' },
@@ -67,7 +66,7 @@ const TBB tb_f[]={
   {ILL  , ILL  , L'ㄳ'},
   {"n"  , "n"  , L'ㄴ'},
   {ILL  , ILL  , L'ㄵ'},
-  {ILL  , ILL  , L'ㄶ'},
+  {ILL  , "nh" , L'ㄶ'},
   {"d"  , "t"  , L'ㄷ'},
   {"r"  , "l"  , L'ㄹ'},
   {ILL  , ILL  , L'ㄺ'},
@@ -100,13 +99,13 @@ void tb_emit(const int cFprev, const int cI, const int cM, const bool breakword)
     const char *rFp=tb_f[cFprev].rf;
     const char *rFp_iht_I=tb_f[cFprev].ri;
     const char *rI=tb_i[cI].r;
-    assert(ILL!=rFp);
+    fflush(stdout); assert(ILL!=rFp);
 
     #ifdef DEBUG_DISABLE_SP
 
     {
       wprintf(L"%s", (NE==rFp) ? "" : rFp);              // [cFprev]-cIcM
-      wprintf(breakword ? L"" : L"-");                     // cFprev[-]cIcM
+      wprintf(breakword ? L"" : CONNECT);                // cFprev[-]cIcM
       wprintf(L"%s", (IHT==rI) ? (NE==rFp?"":rFp) : rI); // cFprev-[cI]cM
     }
 
@@ -123,7 +122,8 @@ void tb_emit(const int cFprev, const int cI, const int cM, const bool breakword)
       wprintf(L"%s", (NE==rFp||IHT==rI) ? "" : (sp->x?sp->x:rFp));
 
       // cFprev[-]cIcM
-      wprintf(breakword?L"":L"-");
+      wprintf(breakword ? L"" : CONNECT);
+      // wprintf(breakword ? L"" : CONNECT);
 
       // cFprev-[cI]cM
       #ifdef DEBUG_SYLLABLE_ELE

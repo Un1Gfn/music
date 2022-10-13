@@ -1,7 +1,12 @@
 O:=builddir
 N:=ninja -j4 -v -C $(O)
+IN?=sample.txt
+OUT?=/dev/stdout
 
 default: build
+
+help:
+	@echo '$(MAKE) run IN=/path/to/hangul OUT=/path/to/romanized'
 
 $(O):
 	@echo "/Makefile --> /meson.build --> /builddir/build.ninja"
@@ -15,21 +20,20 @@ build: | $(O)
 	$(N)
 
 run: build
-	file sample.txt
-	>out.tmp.txt
-# 	$(O)/hangul-rr <sample.txt >out.tmp.txt
-	$(O)/hangul-rr <sample.txt
+	file $(IN)
+	>$(OUT)
+	$(O)/hangul-rr <$(IN) >$(OUT)
 
 valgrind: build
-	file sample.txt
-	valgrind $(O)/hangul-rr <sample.txt
+	file $(IN)
+	valgrind $(O)/hangul-rr <$(IN)
 
 gdb: build
-	file sample.txt
+	file $(IN)
 	gdb $(O)/hangul-rr \
 		-ex 'set debuginfod enabled off' \
 		-ex 'b -function tb_emit -label lb' \
-		-ex 'r <sample.txt' \
+		-ex 'r <$(IN)' \
 		-ex 'c 16'
 
 # https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Makefile?h=v5.19#n1561

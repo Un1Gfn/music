@@ -32,7 +32,7 @@ int main(){
   assert(setlocale(LC_ALL,"ko_KR.UTF-8"));
   assert(6==MB_CUR_MAX);
 
-  wprintf(L".\n");
+  // wprintf(L".\n");
 
   // init
   breakword=true;
