@@ -19,6 +19,7 @@ project('hangul-rr', 'c',
 
 add_global_arguments('-D_GNU_SOURCE',
                      # '-DDISABLE_SP',
+                     # '-DSYLLABLE_ELE',
                      '-Wdeprecated-declarations',
                      '-Winline',
                      '-Wno-pedantic',

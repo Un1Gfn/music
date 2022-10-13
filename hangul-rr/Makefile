@@ -30,7 +30,7 @@ gdb: build
 		-ex 'set debuginfod enabled off' \
 		-ex 'b -function tb_emit -label lb' \
 		-ex 'r <in.txt' \
-		-ex 'c 22'
+		-ex 'c 16'
 
 # https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Makefile?h=v5.19#n1561
 clean:

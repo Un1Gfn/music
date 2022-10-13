@@ -6,13 +6,13 @@
 #include "sp.h"
 
 // no final consonant, CV instead of CVC
-#define NE  (void*)0
+const char *const NE=(void*)0;
 
 // initial consonant inherits final consonant pf revious syllable
-#define IHT (void*)-1
+const char *const IHT=(void*)-1;
 
 // obselete consonant
-#define ILL (void*)-2
+const char *const ILL=(void*)-2;
 
 const TB tb_i[]={
   { "g"  , L'ㄱ' },
@@ -118,26 +118,34 @@ void tb_emit(const int cFprev, const int cI, const int cM, const bool breakword)
 
       // [cFprev]-cIcM
       // if(NE==rFp)wprintf(L"**");
-      // wprintf(L"#%s", sp->x ? sp->x : ((NE==rFp)?"":rFp));
-      /*wprintf(L"#");*/  wprintf(L"%s", (NE==rFp) ? "" : (sp->x?sp->x:rFp));
+      #ifdef SYLLABLE_ELE
+        wprintf(L"#");
+      #endif
+      wprintf(L"%s", (NE==rFp||IHT==rI) ? "" : (sp->x?sp->x:rFp));
 
       // cFprev[-]cIcM
       wprintf(breakword?L"":L"-");
 
       // cFprev-[cI]cM
+      #ifdef SYLLABLE_ELE
+        wprintf(L"!");
+      #endif
       if(IHT==rI){
         assert(!sp->x);
         // wprintf(L"!%s", sp->y ? sp->y : ((NE==rFp)?"":rFp));
-        /*wprintf(L"!");*/ wprintf(L"%s", (NE==rFp) ? "" : (sp->y?sp->y:rFp));
+        wprintf(L"%s", (NE==rFp) ? "" : (sp->y?sp->y:rFp));
       }else{
-        /*wprintf(L"!");*/ wprintf(L"%s", sp->y ? sp->y : rI);
+        wprintf(L"%s", sp->y ? sp->y : rI);
       }
 
     }
 
 #endif
 
-    /*wprintf(L"@");*/ wprintf(L"%s", rM); // cFprev-cI[cM]
+    #ifdef SYLLABLE_ELE
+      wprintf(L"@");
+    #endif
+    wprintf(L"%s", rM); // cFprev-cI[cM]
 
     fflush(stdout);lb:sleep(0);
 

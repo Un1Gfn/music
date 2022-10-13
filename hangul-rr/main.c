@@ -17,6 +17,7 @@ static inline void splithg(int *initial, int *medial, int *final, const wint_t h
   assert(*medial<=TB_M_N);
   assert(*final<=TB_F_N);
   assert((long long)hangul == (*initial)*588 + (*medial)*28 + (*final) + 44032);
+  // wprintf(L" [%d-%d-%d] ", *initial, *medial, *final);
 }
 
 int main(){
@@ -24,6 +25,7 @@ int main(){
   // define
   wint_t wc=-1;
   int cFprev=-1, cI=-1, cM=-1, cF=-1;
+  int lineno=-1;
   bool breakword=-1;
 
   static_assert(16==MB_LEN_MAX);
@@ -35,6 +37,8 @@ int main(){
   // init
   breakword=true;
   cFprev=0;
+  lineno=1;
+  wprintf(L"%3d ", lineno);
 
   while(WEOF!=(wc=getwchar())){
 
@@ -43,6 +47,9 @@ int main(){
       breakword=true;
       cFprev=0;
       wprintf(L"%lc", wc);
+      if(L'\n'==wc){
+        wprintf(L"%3d ", ++lineno);
+      }
       continue;
     }
 
