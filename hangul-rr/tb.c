@@ -1,5 +1,6 @@
 #include <assert.h>
 #include <stdio.h>
+#include <unistd.h>
 
 #include "tb.h"
 #include "sp.h"
@@ -116,7 +117,9 @@ void tb_emit(const int cFprev, const int cI, const int cM, const bool breakword)
       const SP *sp=sp_lk(cFprev,cI);
 
       // [cFprev]-cIcM
-      wprintf(L"%s", sp->x ? sp->x : ((NE==rFp)?"":rFp));
+      // if(NE==rFp)wprintf(L"**");
+      // wprintf(L"#%s", sp->x ? sp->x : ((NE==rFp)?"":rFp));
+      /*wprintf(L"#");*/  wprintf(L"%s", (NE==rFp) ? "" : (sp->x?sp->x:rFp));
 
       // cFprev[-]cIcM
       wprintf(breakword?L"":L"-");
@@ -124,16 +127,19 @@ void tb_emit(const int cFprev, const int cI, const int cM, const bool breakword)
       // cFprev-[cI]cM
       if(IHT==rI){
         assert(!sp->x);
-        wprintf(L"%s", sp->y ? sp->y : ((NE==rFp)?"":rFp));
+        // wprintf(L"!%s", sp->y ? sp->y : ((NE==rFp)?"":rFp));
+        /*wprintf(L"!");*/ wprintf(L"%s", (NE==rFp) ? "" : (sp->y?sp->y:rFp));
       }else{
-        wprintf(L"%s", sp->y ? sp->y : rI);
+        /*wprintf(L"!");*/ wprintf(L"%s", sp->y ? sp->y : rI);
       }
 
     }
 
 #endif
 
-    wprintf(L"%s", rM); // cFprev-cI[cM]
+    /*wprintf(L"@");*/ wprintf(L"%s", rM); // cFprev-cI[cM]
+
+    fflush(stdout);lb:sleep(0);
 
 }
 

@@ -26,6 +26,7 @@ add_global_arguments('-D_GNU_SOURCE',
                      '-Wno-error=deprecated-declarations',
                      '-Wno-error=unused-but-set-variable',
                      '-Wno-error=unused-parameter',
+                     '-Wno-error=unused-label',
                      '-Wno-error=unused-variable',
                      language: 'c')
 
