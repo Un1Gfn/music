@@ -1,16 +1,17 @@
 # ~/music/ly.ame/Makefile
 
+EXT=aiff
 SF:=/usr/share/soundfonts/GeneralUser.sf2
 
 # .NOTPARALLEL:
 # default: ly ly.U ly.L wav
 
-default: lu.aiff
+default: lu.$(EXT)
 
-play: lu.aiff
+play: lu.$(EXT)
 	mpv --loop-file=inf --no-resume-playback $^
 
-lu.aiff: lu.midi
+lu.$(EXT): lu.midi
 	../ly.scripts/fluidsynth.sh $^ $@; \
 
 # l_.midi:

@@ -6,6 +6,8 @@
 \include "meta.ly"
 
 \include "upper.ly"
+
+\include "accompanimentfunc.ly"
 \include "lower.ly"
 
 \score {
