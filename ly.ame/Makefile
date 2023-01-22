@@ -19,7 +19,13 @@ l.midi:
 # 	timidity -c <(echo "soundfont $(SF)") -ik -OsS $<
 
 wav: d.midi u.midi l.midi
-	for m in $^; do ./fluidsynth.sh "$$m" $${m%.midi}.wav; done
+	@for m in $^; do \
+		../ly.scripts/fluidsynth.sh $$m $${m%.midi}.wav; \
+		ln -sfv "$$(realpath $${m%.midi}.wav)" /home/darren/cgi/00-cgi-tmp/; \
+	done
+	@echo
+	@echo '~/cgi/httpd.sh -m'
+
 
 clean:
 	rm -fv *.pdf *.midi

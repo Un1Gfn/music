@@ -1,14 +1,8 @@
 # git rm -r --cached .
 # git add .
 
-/8bit/*.out
-
-# LilyPond
-/lilypond/*.ly.midi
-/lilypond/*.ly.pdf
-/lilypond/*.ly-tmp-???????
-/lilypond/*.ly.midi.????????
-/lilypond/mpv-shot????.jpg
-
-# YouTube
-/*.mp4
+/ly.*/*.midi
+/ly.*/*.pdf
+/ly.*/*.aiff
+/ly.*/*.wav
+/ly.*/*.tmp.ly
