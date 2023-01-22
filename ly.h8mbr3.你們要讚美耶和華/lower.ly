@@ -2,15 +2,18 @@
 % accompaniment
 % https://en.wikipedia.org/wiki/accompaniment
 
+% four = \fixed c { \accOne f \accOne bes \accOne c' \accOne f }
+four = { \fixed c, { \accOne f \accOne bes \accOne c' \accOne f } }
+
 % lower = \fixed c {
 lower = {
 
   \meta
   \clef bass
 
-  \repeat unfold 4 {
-    % \fixed c   { \accOne f \accOne bes \accOne c' \accOne f }
-    \fixed c,  { \accOne f \accOne bes \accOne c' \accOne f }
+  \four
+  \repeat unfold 8 {
+    \four
   }
 
 }
