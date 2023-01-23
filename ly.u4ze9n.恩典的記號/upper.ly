@@ -1,7 +1,10 @@
 % upper.ly
 % melody (main theme)
 
-upper = \transpose c d \relative d {
+upper = \transpose c d \relative d' {
+
+  % \set Staff.midiInstrument = "glockenspiel"
+  \set Staff.midiInstrument = "marimba"
 
   \meta
   \clef "treble"
@@ -14,13 +17,13 @@ upper = \transpose c d \relative d {
 
   % https://lilypond.org/doc/v2.24/Documentation/learning/advanced-rhythmic-commands#partial-measure
   % https://lilypond.org/doc/v2.24/Documentation/music-glossary/anacrusis
-  \partial 8 g16g | 
+  % \partial 8 g16g | 
+  | r2 r4. g16g |
 
   % https://lilypond.org/doc/v2.24/Documentation/notation/long-repeats#written_002dout-repeats
   % https://lilypond.org/doc/v2.24/Documentation/notation/using-repeats-with-midi
   \unfoldRepeats
-
-  \repeat volta 2 \relative d' {
+  \repeat volta 2 \relative d'' {
 
     | d8e e8r d16.e16.d16 e16.d16.c16 | d8c a4 r4.
 
@@ -30,7 +33,7 @@ upper = \transpose c d \relative d {
 
     \alternative {
 
-      \volta 1 \relative d' {
+      \volta 1 \relative d'' {
 
         | d8c a4.r8 c8d | e8g d8e c4 r8.
 
@@ -40,7 +43,7 @@ upper = \transpose c d \relative d {
 
       }
 
-      \volta 2 \relative d' {
+      \volta 2 \relative d'' {
 
         | d8 a4. r4
 
@@ -63,11 +66,11 @@ upper = \transpose c d \relative d {
   % AlternativeBlock.Ending ok
   % AlternativeBlock.Within conflict
 
-  \repeat unfold 2 \relative d'' {
+  \repeat unfold 2 \relative d''' {
 
     | a4. r8
 
-    g16a16a16g a8.c,16 | g'8. e16 e4 r8.
+    g16a16a16g16 a8.c,16 | g'8. e16 e4 r8.
 
     % AlternativeBlock.Within
     \alternative {
@@ -79,7 +82,7 @@ upper = \transpose c d \relative d {
       }
     }
 
-    g16a16a16g a8.c,16 | e8.d16 d4 r4
+    g16(a16a16g16) a8.c,16 | e8.d16 d4 r4
 
     e8g | a4 a4.r8
 

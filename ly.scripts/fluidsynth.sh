@@ -2,7 +2,7 @@
 
 function help {
   echo
-  echo "  $0 <in.midi> <out.wav>"
+  echo "  $0 <in.midi> <out.wav|out.aiff>"
   echo
   exit 1
 }
@@ -25,7 +25,7 @@ function help {
     # --audio-driver=file
     # --audio-driver=alsa
     # --audio-driver=pipewire
-    --gain 1.3
+    --gain 2.0
 
     # https://www.fluidsynth.org/api/fluidsettings.xml#synth.sample-rate
     --sample-rate 96000
