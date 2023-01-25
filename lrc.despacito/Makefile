@@ -5,7 +5,7 @@ M4A:=despacito.m4a
 default: $(HTML) seek
 
 entr:
-	entr <<<$(TXT) $(MAKE) $(HTML)
+	entr <<<$(TXT) $(MAKE) -B $(HTML)
 
 $(HTML): $(TXT)
 	./script.txt2html.sh $^ $@

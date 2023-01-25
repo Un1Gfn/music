@@ -1,30 +1,30 @@
 # https://genius.com/Luis-fonsi-despacito-lyrics
 # https://www.youtube.com/watch?v=kJQP7kiw5Fk
 
-[00:00 ympbfn]
+<00:00 ympbfn>
 Ay, ¡Fonsi! ¡D.Y.!
 O{oh}, oh, {no}, oh, {no}, oh
 ¡Hey, yeah!
 Dididiri Daddy, go!
 
-[00:40 uzgmzd]
+<00:40 uzgmzd>
 {Sí}, sabes que {ya} llevo un rato mi{rán}dote {_}
 {Ten}go que bai{lar} contigo {hoy} (¡D.Y.!)
 {Vi} que tu mi{ra}da ya estaba lla{mán}dome
 {Mué}strame el ca{mi}no que yo {voy}
 
-[01:02 pfsqdp]
+<01:02 pfsqdp>
 ¡Oh!
-{Tú,} tú eres el i{mán} y yo soy el me{tal}
-Me voy acer{can}do y voy armando el {plan}
-Sólo con pen{sar}lo se acelera el {pul}so ({¡}Oh, yeah!)
-{Ya}, ya me está gus{tan}do más de lo nor{mal}
-Todos mis sen{ti}dos van pidiendo {más}
-Esto hay que to{mar}lo sin ningún a{pu}ro
+{Tú,} [tú e]res el i{mán} y yo [so]y el me{tal}
+[Me] voy acer{can}do y vo[y ar]mando el {plan}
+[Só]lo con pen{sar}lo se a[ce]lera el {pul}so ({¡}Oh, [yeah]!)
+{Ya}, [ya] me está gus{tan}do más [de] lo nor{mal}
+[To]dos mis sen{ti}dos van pi[dien]do {más}
+[Es]to hay que to{mar}lo sin nin[gú]n a{pu}ro
 
-[01:23 jzhadj]
+<01:23 jzhadj>
 {_} Despa{ci}to
-Quiero respi{ra}r tu cuello despa{ci}to
+Quiero respi{rar} tu cuello despa{ci}to
 Deja que te {di}ga cosas al o{í}do
 Para que te a{cuer}des si no estás con{mi}go
 {Des}pa{ci}to
@@ -33,7 +33,7 @@ Firmar las pa{re}des de tu labe{rin}to
 Y hacer de tu {cuer}po todo un manus{cri}to
 (Sube, sube, sube{;} sube, sube)
 
-[01:46 fonslj]
+<01:46 fonslj>
 {Qui}ero ver bailar tu {pe}lo, quiero ser tu {rit}mo (Woh, eh)
 Qu{e} le enseñes a mi {bo}ca (Woh, eh)
 {Tus} lugares favo{ri}tos (Favorito', {fa}vorito', baby)
@@ -41,7 +41,7 @@ Qu{e} le enseñes a mi {bo}ca (Woh, eh)
 {Has}ta provocar tus {gri}tos (Woh, eh)
 {Y} que olvides tu ape{lli}do (Rrr; D.Y.)
 
-[02:06 ghgvpm]
+<02:06 ghgvpm>
 {_} Si te pido un beso, ven, {dá}melo, yo sé que estás pen{sán}dolo (Eh)
 Llevo tiempo inten{tán}dolo (Eh), mami, esto es dando y {dán}dolo
 Sabes que tu {co}razón conmigo te hace {bam}-bam
@@ -51,7 +51,7 @@ Quiero, quiero, quiero {ver} cuánto amor a ti te {ca}be
 Yo no tengo {pri}sa, yo me quiero dar el {via}je
 Empezamos {len}to, después sal{va}je
 
-[02:29 cuobsw]
+<02:29 cuobsw>
 Pasito a pa{si}to, suave suave{ci}to
 Nos vamo' pe{gan}do, poquito a po{qui}to
 Cuando tú me {be}sas con esa des{tre}za
@@ -62,7 +62,7 @@ Y es que esa be{lle}za es un rompeca{be}zas (No, no)
 Pero pa' mon{tar}lo aquí tengo la {pie}za
 ¡Oye! (Yo', yo'; ¡plo!)
 
-[02:51 eoxbhh]
+<02:51 eoxbhh>
 {De}spa{ci}to
 Quiero respi{rar} tu cuello despa{ci}to (Yo')
 Deja que te {di}ga cosas al o{í}do (Yo')
@@ -73,7 +73,7 @@ Firmar las pa{re}des de tu labe{rin}to
 Y hacer de tu {cuer}po todo un manus{cri}to
 (Sube, sube, sube{,} sube, sube)
 
-[03:14 vsixcf]
+<03:14 vsixcf>
 {Quie}ro ver bailar tu {pe}lo, quiero ser tu {rit}mo (Eh, woh, eh)
 Qu{e} le enseñes a mi {bo}ca (Woh, eh)
 {Tus} lugares favo{ri}tos (Favorito', {fa}vorito', baby)
@@ -81,18 +81,18 @@ Qu{e} le enseñes a mi {bo}ca (Woh, eh)
 H{as}ta provocar tus {gri}tos (Woh, eh)
 {Y} que olvides tu ape{lli}do
 
-[03:33 qdtabz]
+<03:33 qdtabz>
 Despa{ci}to
 Vamo' a hacerlo en {u}na playa en Puerto {Ri}co
 Hasta que la{s o}las griten: "¡Ay, Ben{di}to!"
 Para que mi {se}llo se quede con{ti}go
 ¡Báila{lo}!
 
-[03:45 jxsnzk]
+<03:45 jxsnzk>
 Pasito a pa{si}to, suave suave{ci}to (Oh, yeah-yeah)
 Nos vamos pe{gan}do, poquito a po{qui}to (No, no; oh)
 Que le enseñes a mi {bo}ca
-Tus lugares favo{ri}tos
+[Tus] lugares favo{ri}tos
 Favorito', {fa}vorito', baby (Ooh)
 Pasito a pa{si}to, suave suave{ci}to
 Nos vamos pe{gan}do, poquito a po{qui}to

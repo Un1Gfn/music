@@ -11,7 +11,8 @@ function dp_apply_style_class {
     /usr/bin/sed
     -E
     -e 's/$/ <br>/'
-    -e 's,\{([^}]+)\},<span class="s">\1</span>,g'
+    -e 's,\{([^}]+)\},<span class="heavy">\1</span>,g'
+    -e 's,\[([^]]+)\],<span class="light">\1</span>,g'
   )
   # echo "A" 1>&2
   # echo "$TXT" 1>&2
@@ -63,9 +64,13 @@ cat <<EOF
 <html>
 <head>
   <style>
-    .s {
+    .heavy {
       font-weight: bold;
       color: brown;
+    }
+    .light {
+      font-weight: bold;
+      color: gray;
     }
   </style>
   <meta charset="utf-8">
