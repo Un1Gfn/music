@@ -28,6 +28,9 @@ function help {
     --gain 2.0
 
     # https://www.fluidsynth.org/api/fluidsettings.xml#synth.sample-rate
+    # https://github.com/audiojs/sample-rate
+    # --sample-rate  8000
+    # --sample-rate 44100
     --sample-rate 96000
 
     --audio-file-type auto
