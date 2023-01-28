@@ -9,6 +9,12 @@ upper = \transpose c e \relative e'' {
   \meta
   \clef "treble"
 
+  % | r1 |
+
+  | r \breve |
+  % | r1 | r1 |
+
+
   | g8 d e g4 d8 e g~ | g d e g e e e d | g d e g4 d8 e g~ | g d e g e e e d |
 
   | g8 d e g4 d8 e g~ | g d e g e d c d | d d d c~2 | b8 b r c r d r4 |
