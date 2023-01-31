@@ -4,12 +4,13 @@
 upper = \transpose c d \relative c' {
 
   % \set Staff.midiInstrument = "glockenspiel"
-  % \set Staff.midiInstrument = "marimba"
+  \set Staff.midiInstrument = "marimba"
 
   \meta
   \clef "treble"
-
   \key d \major
+
+  | r1 | r1 |
 
   | c4 c8 d4 e4.~ | 2. r4 | g4 g8 f4 a,4.~ | 2. r4 | b4 b8 c4 d4.~ | 2 r4 a' |
 

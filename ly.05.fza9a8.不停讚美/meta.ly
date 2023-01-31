@@ -3,8 +3,9 @@
 meta = {
 
   % https://en.wikipedia.org/wiki/Tempo#Basic_tempo_markings
-  % \tempo "?" 4 = 144
-  \tempo "?" 4 = 180
+  \tempo "?" 4 = 144
+  % \tempo "?" 4 = 180
+  % \tempo "?" 4 = 224
 
   % \numericTimeSignature
   \time 4/4

@@ -6,18 +6,15 @@
 \include "meta.ly"
 
 \include "upper.ly"
-
-% \include "accompanimentfunc.ly"
-% \include "lower.ly"
-
-% \include "percussion.ly"
+\include "lower.ly"
+\include "percussion.ly"
 
 \score {
   \new PianoStaff \with { instrumentName = "Piano" }
   <<
-    % \new Staff = "lower" \lower
-    \new Staff = "upper" \upper
-    % \new DrumStaff = "percussion" \percussion 
+    % \new Staff = "upper" \upper
+    \new Staff = "lower" \lower
+    \new DrumStaff = "percussion" \percussion 
   >>
   % \layout { }
   \midi { }
