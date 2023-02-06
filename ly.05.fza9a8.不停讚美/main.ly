@@ -12,7 +12,7 @@
 \score {
   \new PianoStaff \with { instrumentName = "Piano" }
   <<
-    % \new Staff = "upper" \upper
+    \new Staff = "upper" \upper
     \new Staff = "lower" \lower
     \new DrumStaff = "percussion" \percussion 
   >>

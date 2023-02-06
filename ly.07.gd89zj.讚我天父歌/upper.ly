@@ -11,6 +11,7 @@ upper = \fixed c' {
   % <ees aes>8^\markup{\small "24"}
   % <d-1 g-3>8
 
+  % \repeat unfold 5 { g,16 r8. }
   | r2. | r2
 
   % \textMark "A"

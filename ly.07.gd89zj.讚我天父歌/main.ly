@@ -7,6 +7,7 @@
 
 \include "upper.ly"
 \include "lower.ly"
+\include "percussion.ly"
 
 % https://lilypond.org/doc/v2.24/Documentation/notation/setting-the-staff-size
 #(set-global-staff-size 26)
@@ -18,8 +19,8 @@
 \score {
 
   \new PianoStaff \with { instrumentName = "Piano" } <<
-    \new Staff = "upper" { \set Staff.midiMaximumVolume = #0.8 \upper }
-    \new Staff = "lower" { \set Staff.midiMaximumVolume = #1.0 \lower }
+    \include "CTRL"
+    \new DrumStaff = "percussion" \percussion
   >>
 
   \layout {

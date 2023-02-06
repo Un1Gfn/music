@@ -13,14 +13,20 @@
   \header { tagline = ##f }
 
   \score {
+
     % https://lilypond.org/doc/v2.22/Documentation/learning/staff-groups
     % https://lilypond.org/doc/v2.22/Documentation/learning/solo-piano
     \new PianoStaff \with { instrumentName = "Piano" } <<
       %{ LB.U %} { \new Staff = "upper" \upper }
       %{ LB.L %} { \new Staff = "lower" \lower }
     >>
-    \layout {}
+
+    \layout {
+      % \override Score.BarNumber.break-visibility = ##(#t #t #t)
+    }
+
     \midi {}
+
   }
 
 }
