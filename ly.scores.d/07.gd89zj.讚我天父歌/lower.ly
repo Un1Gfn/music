@@ -17,9 +17,9 @@ lower = \fixed c {
 
     \alternative {
 
-      \volta 1 { <b-2 g-4>4 <b-2 g-4>8. 16 | <c'-1 c-5>4 <b-2 g-4> <d'-1 g-4> | <d'-1 d-5>2 }
+      \volta 1 { <b g>4 <b-1 g-2>8. 16 | <c'-1 c-5>4 <b-1 g-2> <d'-1 g-2> | <d'-1 d-5>2 }
 
-      \volta 2 { <b-1 g-2>4 g4-2 | <g-2 c-5>4 <g-2 d-4> <c'-1 d-4> | \partial 2 { <g-1 g,-5>2 } | \bar "|." | <c'-1 c-5>2. | <b-1 g-2>2. | \fine }
+      \volta 2 { <b-1 g-2>4 g4-2 | <g-2 c-5>4 <g-2 d-4> <c'-1 d-4> | \partial 2 { <g-1 g,-5>2 } | \bar "|." | <c-2>2. | <g-1>2. | \fine }
 
     }
 

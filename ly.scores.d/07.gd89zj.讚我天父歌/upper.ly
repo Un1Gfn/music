@@ -32,7 +32,7 @@ upper = \fixed c' {
     
     \volta 2 {
       % \textMark "E"
-      <d-1 b-4>4 | <e-2 c'-5> <d-1 b-4> <d-1 a-3> | \partial 2 { <b,-1 d-2 g-5>2 } | \bar "|." <e-3 g-5>2. | <d-2 g-5>2. | \fine
+      <d-1 b-4>4 | <e-2 c'-5> <d-1 b-4> <d-1 a-3> | \partial 2 { <b,-1 d-2 g-5>2 } | \bar "|." <c-1 e-3 g-5>2. | <b,-1 d-2 g-5>2. | \fine
     }
 
   }

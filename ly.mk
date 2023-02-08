@@ -1,12 +1,19 @@
+# https://www.gnu.org/software/make/manual/html_node/Include.html
+
 # relative paths are not based on ly.mk
 # relative paths are based on Makefiles that include ly.mk
 
-# https://www.gnu.org/software/make/manual/html_node/Include.html
+MAKEFLAGS:=-j1
 
 # IDTITLE:=$(patsubst ly.%,%,$(shell basename $(shell pwd)))
 # TITLE:=$(word 2,$(subst ., ,$(IDTITLE)))
-ID:=$(word 3,$(subst ., ,$(shell basename $(shell pwd))))
-TITLE:=$(word 4,$(subst ., ,$(shell basename $(shell pwd))))
+ID:=$(word 2,$(subst ., ,$(shell basename $(shell pwd))))
+TITLE:=$(word 3,$(subst ., ,$(shell basename $(shell pwd))))
+
+# test:
+# 	@echo '$(MAKEFLAGS)'
+# 	@echo '$(ID)'
+# 	@echo '$(TITLE)'
 
 view: lu.pdf
 	( /usr/bin/atril $^ &>/dev/null & )
@@ -29,3 +36,6 @@ lu.pdf lu.midi:
 
 clean:
 	/usr/bin/rm -fv *.pdf *.aiff *.midi *.wav *.m4a
+
+nemo:
+	( /usr/bin/nemo . &>/dev/null & )

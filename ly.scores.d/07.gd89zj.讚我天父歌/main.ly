@@ -3,7 +3,19 @@
 % https://lilypond.org/doc/v2.22/Documentation/learning/staff-groups
 % https://lilypond.org/doc/v2.22/Documentation/learning/solo-piano
 
-\include "meta.ly"
+meta = {
+
+  % https://en.wikipedia.org/wiki/Tempo#Basic_tempo_markings
+  \tempo "Allegro" 4 = 144
+
+  % \numericTimeSignature
+  \time 3/4
+
+  % https://lilypond.org/doc/v2.23/Documentation/notation/bars#bar-numbers
+
+  \key g \major
+
+}
 
 \include "upper.ly"
 \include "lower.ly"

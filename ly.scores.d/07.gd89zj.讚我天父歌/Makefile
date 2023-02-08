@@ -7,6 +7,8 @@ COMPOSER:=''
 
 ################################################################################
 
+EXT:=wav
+
 # test:
 # 	@echo $(MAKEFLAGS)
 
@@ -24,6 +26,7 @@ entrpdf:
 	/usr/bin/entr <<<"$$(/usr/bin/ls -1 *.ly)" $(MAKE) -B lu.pdf
 
 luext: lu.$(EXT)
+lupdf: lu.pdf
 
 m4a: lu.m4a
 	cp -v $^ $(ID).$(TITLE).m4a
@@ -45,7 +48,6 @@ view: lu.pdf
 # .NOTPARALLEL:
 MAKEFLAGS:=-j1
 
-EXT=wav
 # SF:=/usr/share/soundfonts/Arachno.sf2
 SF:=/usr/share/soundfonts/Unison.sf2
 
@@ -62,12 +64,12 @@ u.m4a: SUFFIX:=_U
 
 # 2/3 synthesize
 %.$(EXT): %.midi
-	../ly.script.fluidsynth.sh $^ $@
+	../../ly.script.fluidsynth.sh $^ $@
 
 # 1/3 compose
 lu.pdf lu.midi &:
 	>CTRL
-	echo '\new Staff = "upper" { \set Staff.midiMaximumVolume = #0.8 \upper }' >>CTRL
+	echo '\new Staff = "upper" { \set Staff.midiMaximumVolume = #0.7 \upper }' >>CTRL
 	echo '\new Staff = "lower" { \set Staff.midiMaximumVolume = #1.0 \lower }' >>CTRL
 	/usr/bin/lilypond -o lu --pdf main.ly
 
