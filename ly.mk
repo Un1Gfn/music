@@ -1,3 +1,6 @@
+# relative paths are not based on ly.mk
+# relative paths are based on Makefiles that include ly.mk
+
 # https://www.gnu.org/software/make/manual/html_node/Include.html
 
 # IDTITLE:=$(patsubst ly.%,%,$(shell basename $(shell pwd)))
@@ -18,7 +21,7 @@ m4a: lu.$(EXT)
 # 2/3 synthesize
 luext: lu.$(EXT)
 lu.$(EXT): lu.midi
-	../ly.script.fluidsynth.sh $^ $@
+	../../ly.script.fluidsynth.sh $^ $@
 
 # 1/3 compose
 lu.pdf lu.midi:

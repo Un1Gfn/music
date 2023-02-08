@@ -8,4 +8,4 @@ EXT=wav
 # default: luext
 default: m4a
 
-include ../ly.mk
+include ../../ly.mk
