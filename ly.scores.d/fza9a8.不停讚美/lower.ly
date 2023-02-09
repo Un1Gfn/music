@@ -4,7 +4,6 @@
 
 lower = \fixed c' {
 
-  % https://lilypond.org/doc/v2.24/Documentation/notation/controlling-midi-dynamics#setting-midi-volume
   \set Staff.midiMaximumVolume = #0.6
 
   \meta

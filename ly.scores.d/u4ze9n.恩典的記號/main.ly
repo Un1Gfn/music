@@ -1,12 +1,15 @@
 \version "2.24.0"
 
-% https://www.youtube.com/watch?v=5TlA9Ylalj4
-% 恩典的記號 盛曉玫 06 幸福
+meta = {
 
-% https://lilypond.org/doc/v2.22/Documentation/learning/staff-groups
-% https://lilypond.org/doc/v2.22/Documentation/learning/solo-piano
+  \tempo "Larghetto" 4 = 63
+  \key d \major
 
-\include "meta.ly"
+  \time 4/4
+
+  \override Score.BarNumber.break-visibility = ##(#t #t #t)
+
+}
 
 \include "upper.ly"
 

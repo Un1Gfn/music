@@ -1,8 +1,5 @@
 upper = \transpose c g \relative c' {
 
-  % \set Staff.midiInstrument = "glockenspiel"
-  % \set Staff.midiInstrument = "marimba"
-
   \meta
   \clef "treble"
 

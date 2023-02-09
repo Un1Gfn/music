@@ -1,11 +1,5 @@
 % accompanimentfunc.ly
 
-% https://en.wikipedia.org/wiki/Chord_(music)#Symbols
-% https://en.wikipedia.org/wiki/Chord_notation
-
-% https://lists.gnu.org/archive/html/lilypond-user/2023-01/msg00402.html
-% https://extending-lilypond.readthedocs.io/en/latest/music.html#argument-type-checking
-
 % end
 endX = #(define-music-function (x) (ly:pitch?) #{ < \transpose c c, $x \transpose c e, $x \transpose c g, $x \transpose c c $x > 4 #})
 endY = #(define-music-function (x) (ly:pitch?) #{ < \transpose c e, $x \transpose c g, $x \transpose c c $x  \transpose c e $x > 4 #})

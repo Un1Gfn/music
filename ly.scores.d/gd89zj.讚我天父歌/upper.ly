@@ -5,12 +5,6 @@ upper = \fixed c' {
   \meta
   \clef "treble"
 
-  % https://lilypond.org/doc/v2.24/Documentation/notation/inside-the-staff#fingering-instructions
-  % <g' ais>8^\markup{\small "24"}
-  % <g ais>8^\markup{\small "24"}
-  % <ees aes>8^\markup{\small "24"}
-  % <d-1 g-3>8
-
   % \repeat unfold 5 { g,16 r8. }
   | r2. | r2
 

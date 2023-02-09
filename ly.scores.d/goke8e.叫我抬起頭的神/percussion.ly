@@ -12,9 +12,6 @@ percussion = \drummode {
 
   \set Staff.midiMaximumVolume = #1.7
 
-
-  % https://lilypond.org/doc/v2.24/Documentation/notation/percussion-notes
-  % https://lilypond.org/doc/v2.24/Documentation/notation/common-notation-for-percussion
   % hh4 bd4
   % sn4
 

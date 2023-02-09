@@ -3,9 +3,6 @@
 
 upper = \transpose c f \relative c'' {
 
-  % \set Staff.midiInstrument = "glockenspiel"
-  % \set Staff.midiInstrument = "marimba"
-
   \meta
   \clef "treble"
 

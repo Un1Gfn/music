@@ -1,25 +1,9 @@
-% lower.ly
-% accompaniment
-% https://en.wikipedia.org/wiki/accompaniment
-
 lower = \fixed c' {
 
-  % https://lilypond.org/doc/v2.24/Documentation/notation/controlling-midi-dynamics#setting-midi-volume
   \set Staff.midiMaximumVolume = #0.7
-
-  % https://lilypond.org/doc/v2.24/Documentation/notation/using-midi-instruments
-  % \set Staff.midiInstrument = "acoustic guitar (nylon)" 
-  % \set Staff.midiInstrument = "acoustic guitar (steel)"
-  % \set Staff.midiInstrument = "electric guitar (clean)"
-  % \set Staff.midiInstrument = "electric guitar (jazz)"
-  % \set Staff.midiInstrument = "electric guitar (muted)"
-  % \set Staff.midiInstrument = "guitar harmonics"
-  
 
   \meta
   \clef bass
-
-  % \repeat unfold _
 
   % \partial 8 r8
   \M g
@@ -100,6 +84,5 @@ lower = \fixed c' {
     }
 
   }
-
 
 }

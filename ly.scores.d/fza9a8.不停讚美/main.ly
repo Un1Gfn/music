@@ -1,9 +1,14 @@
 \version "2.24.0"
 
-% https://lilypond.org/doc/v2.22/Documentation/learning/staff-groups
-% https://lilypond.org/doc/v2.22/Documentation/learning/solo-piano
+meta = {
 
-\include "meta.ly"
+  \tempo "?" 4 = 144
+
+  \time 4/4
+
+  \override Score.BarNumber.break-visibility = ##(#t #t #t)
+
+}
 
 \include "upper.ly"
 \include "lower.ly"

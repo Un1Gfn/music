@@ -1,27 +1,12 @@
-% upper.ly
-% melody (main theme)
-
 upper = \transpose c d \relative d' {
 
-  % \set Staff.midiInstrument = "glockenspiel"
   \set Staff.midiInstrument = "marimba"
 
   \meta
   \clef "treble"
 
-  % \relative
-  % \fixed
-
-  % \repeat unfold _ r1
-
-
-  % https://lilypond.org/doc/v2.24/Documentation/learning/advanced-rhythmic-commands#partial-measure
-  % https://lilypond.org/doc/v2.24/Documentation/music-glossary/anacrusis
-  % \partial 8 g16g | 
   | r2 r4. g16g |
 
-  % https://lilypond.org/doc/v2.24/Documentation/notation/long-repeats#written_002dout-repeats
-  % https://lilypond.org/doc/v2.24/Documentation/notation/using-repeats-with-midi
   \unfoldRepeats
   \repeat volta 2 \relative d'' {
 
@@ -58,13 +43,6 @@ upper = \transpose c d \relative d' {
     }
 
   }
-
-  % \resetRelativeOctave d''
-
-  % https://lilypond.org/doc/v2.23/Documentation/notation/long-repeats#other-variation-in-repeated-sections
-  % \repeat volta 2 \relative d'' {
-  % AlternativeBlock.Ending ok
-  % AlternativeBlock.Within conflict
 
   \repeat unfold 2 \relative d''' {
 

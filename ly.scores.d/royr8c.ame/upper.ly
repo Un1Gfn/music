@@ -13,7 +13,6 @@ upperMain = \relative c'' {
   c8^1 r8 d8^2 c4.^1 b8^3 r8  |
   a8 r8 b8 a4. b8 a8~ | a4 r2. |
 
-  % https://lilypond.org/doc/v2.22/Documentation/learning/adding-text
   \resetRelativeOctave c''
   e8   r8 f8 e4. d4 | c4 d8 c4. r4 |
   b8-3 r8 c8 b4. b4 | d2    c2     |
@@ -74,7 +73,6 @@ upper = \relative c'' {
   \clef "treble"
   \numericTimeSignature \time 4/4
 
-  % https://lilypond.org/doc/v2.22/Documentation/notation/short-repeats#percent-repeats
   \repeat percent 5 { r1 }
 
   \repeat unfold 4 { r1 | }

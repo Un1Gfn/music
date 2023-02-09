@@ -1,11 +1,15 @@
 \version "2.24.0"
 
-% https://www.youtube.com/watch?v=5TlA9Ylalj4
+meta = {
 
-% https://lilypond.org/doc/v2.22/Documentation/learning/staff-groups
-% https://lilypond.org/doc/v2.22/Documentation/learning/solo-piano
+  \tempo "Allegretto" 4 = 142
+  \key d \major
 
-\include "meta.ly"
+  \time 4/4
+
+  \override Score.BarNumber.break-visibility = ##(#t #t #t)
+
+}
 
 \include "upper.ly"
 

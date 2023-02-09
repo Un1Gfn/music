@@ -3,9 +3,6 @@
 
 upper = \transpose c e \relative e'' {
 
-  % \set Staff.midiInstrument = "glockenspiel"
-  % \set Staff.midiInstrument = "marimba"
-
   \meta
   \clef "treble"
 
@@ -34,32 +31,5 @@ upper = \transpose c e \relative e'' {
   | g4 g8 g4 e g8~ | 2 4 4 | f4 e8 c4 a4. | e'4. c a4 | c1 |
 
   | r1 |
-
-  % \relative
-  % \fixed
-
-  % \repeat unfold _ r1
-
-  % https://lilypond.org/doc/v2.24/Documentation/notation/long-repeats#written_002dout-repeats
-  % https://lilypond.org/doc/v2.24/Documentation/notation/using-repeats-with-midi
-  % \unfoldRepeats
-  % \repeat volta 2 \relative d'' {
-  %   \alternative {
-  %     \volta 1 \relative d'' {
-  %     }
-  %   }
-  % }
-
-  % \resetRelativeOctave d''
-
-  % https://lilypond.org/doc/v2.23/Documentation/notation/long-repeats#other-variation-in-repeated-sections
-
-  % AlternativeBlock.Within conflict
-  % AlternativeBlock.Ending ok
-  % \repeat volta 2 \relative d'' {}
-
-  % AlternativeBlock.Within ok
-  % AlternativeBlock.Ending ok
-  % \repeat unfold 2 \relative d''' {}
 
 }

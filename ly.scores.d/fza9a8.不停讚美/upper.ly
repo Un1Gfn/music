@@ -3,7 +3,6 @@
 
 upper = \transpose c d \relative c' {
 
-  % \set Staff.midiInstrument = "glockenspiel"
   \set Staff.midiInstrument = "marimba"
 
   \meta

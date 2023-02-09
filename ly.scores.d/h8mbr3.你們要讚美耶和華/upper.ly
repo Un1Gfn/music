@@ -6,12 +6,8 @@ upper = \relative c'' {
   \meta
   \clef "treble"
 
-  % \relative
-  % \fixed
-
   \repeat unfold 4 r1
 
-  % http://lilypond.org/doc/v2.24/Documentation/notation/changing-multiple-pitches#transpose
   \repeat unfold 2 \transpose c f \relative f' {
 
     c8 c4 c8 e4 c | a4 c8 c4. r8 c | d d d d c d4 e8~ | e2. r4 |
