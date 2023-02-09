@@ -1,9 +1,11 @@
 \version "2.24.0"
 
+#(set-global-staff-size 26)
+
 meta = {
-  \tempo "?" 4 = 152
+  \tempo 4 = 152
   \time 4/4
-  % \key g \major
+  \key g \major
 }
 
 \include "upper.ly"
@@ -13,8 +15,6 @@ meta = {
   <<
     \new Staff = "upper" \upper
   >>
-  \layout {
-    % \override Score.BarNumber.break-visibility = ##(#t #t #t)
-  }
-  % \midi { }
+  \layout { }
+  \midi { }
 }

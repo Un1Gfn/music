@@ -29,7 +29,7 @@ function sc {
   if [ "-h" = "$1" ]; then
     help
   elif ((0=="$#")); then
-    ls -1A | awk '{ print length, $0 }' | sort -n -s -r | cut -d ' ' -f 2-
+    ls -1A | sort -r -t'.' -k2 | awk -F, -v OFS=' ' '{ print length-7, $0 }' | sort -rs -n
   else
     echo
     while ((1<="$#")); do
