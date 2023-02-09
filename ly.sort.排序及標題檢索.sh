@@ -12,14 +12,27 @@ function help {
 }
 
 # stdin ??????.xxx -> stdout ??????
-function cutid {
-  cut -d'.' -f1
+function id_only {
+  cut -d'.' -f2
 }
 
 # t.tw -> s
 # t.hk -> s
-function sc {
+function tc2sc {
   opencc -c /usr/share/opencc/t2s.json
+}
+
+function strip_timestamp_prefix {
+  cut -d '.' -f 2-
+}
+
+function prepend_length {
+  # awk '{ print length, $0 }'
+  awk -F, -v OFS=' ' '{ print length-7, $0 }'
+}
+
+function strip_length {
+  cut -d '.' -f 2-
 }
 
 {
@@ -29,18 +42,16 @@ function sc {
   if [ "-h" = "$1" ]; then
     help
   elif ((0=="$#")); then
-    ls -1A | awk '{ print length, $0 }' | sort -n -s -r | cut -d ' ' -f 2-
+    ls -1A | strip_timestamp_prefix | sort -r -t'.' -k2 | prepend_length | sort -rs -n
   else
     echo
     while ((1<="$#")); do
-      K="$(sc <<<"$1")"
+      K="$(tc2sc <<<"$1")"
       echo "? $K"
-      ls -1A | grep -F -f <(ls -1A | sc | grep "$K" | cutid)
+      ls -1A | grep -F -f <(ls -1A | tc2sc | grep "$K" | id_only)
       echo
       shift
     done
   fi
 
-}
-
-
+}; exit
