@@ -1,3 +1,4 @@
+# this file should be included instead of invoked directly
 # https://www.gnu.org/software/make/manual/html_node/Include.html
 
 # relative paths are not based on ly.mk
@@ -14,6 +15,11 @@ TITLE:=$(word 3,$(subst ., ,$(shell basename $(shell pwd))))
 # 	@echo '$(MAKEFLAGS)'
 # 	@echo '$(ID)'
 # 	@echo '$(TITLE)'
+
+lupdf: lu.pdf
+
+entrpdf:
+	/usr/bin/entr <<<"$$(/usr/bin/ls -1 *.ly)" $(MAKE) -B lu.pdf
 
 view: lu.pdf
 	( /usr/bin/atril $^ &>/dev/null & )
