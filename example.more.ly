@@ -1,4 +1,3 @@
-
 drumPitchNames.o=#'bassdrum
 drumPitchNames.x=#'hihat
 
@@ -43,6 +42,10 @@ accTwo =
 % https://lilypond.org/doc/v2.24/Documentation/notation/controlling-midi-dynamics#setting-midi-volume
 \set Staff.midiMaximumVolume = #0.8
 
+% https://lilypond.org/doc/v2.23/Documentation/notation/bars
+% http://lilypond.org/doc/v2.24/Documentation/internals/tunable-context-properties
+\set Timing.measureBarType = #""
+
 % https://lilypond.org/doc/v2.24/Documentation/notation/using-midi-instruments
 \set Staff.midiInstrument = "acoustic guitar (nylon)" 
 \set Staff.midiInstrument = "acoustic guitar (steel)"
@@ -58,6 +61,13 @@ accTwo =
 
 \numericTimeSignature
 \time 4/4
+
+% https://lists.gnu.org/archive/html/lilypond-user/2023-02/msg00169.html
+startpitch = c''
+score = {
+  \relative \startpitch { d c }   % section 1
+  \relative \startpitch { d'' e } % section 2
+}
 
 % https://lilypond.org/doc/v2.22/Documentation/learning/staff-groups
 % https://lilypond.org/doc/v2.22/Documentation/learning/solo-piano
@@ -101,3 +111,21 @@ accTwo =
 % https://lilypond.org/doc/v2.24/Documentation/learning/advanced-rhythmic-commands#partial-measure
 % https://lilypond.org/doc/v2.24/Documentation/music-glossary/anacrusis
 | \partial 8 g16g |
+
+% https://lilypond.org/doc/v2.24/Documentation/notation/displaying-pitches#ottava-brackets
+% raise an octave / 8va
+\ottava #1 ... \ottava #0
+  
+% https://lilypond.org/doc/v2.23/Documentation/notation/writing-rhythms#durations
+r\maxima r\longa r\breve r1 r2 r4 r8 r16 r32 r64 r128
+
+% https://lilypond.org/doc/v2.24/Documentation/notation/creating-titles-headers-and-footers
+% https://lilypond.org/doc/v2.24/Documentation/extending/lilypond-variables
+% https://lilypond.org/doc/v2.24/Documentation/usage/command_002dline-usage#basic-command-line-options-for-lilypond
+% https://music.stackexchange.com/questions/120916/how-do-i-change-the-lilypond-title-font
+lilypond ... -e '(define-public qihocu "$(ID).$(TITLE)")' ...
+\header {
+  pdftitle = \qihocu
+  title = \markup { \override #'((font-name . "Noto Sans CJK TC") (font-size . 6)) \qihocu }
+  tagline = ##f
+}

@@ -11,10 +11,22 @@ meta = {
 \include "upper.ly"
 
 \score {
-  \new PianoStaff \with { instrumentName = "Piano" }
-  <<
-    \new Staff = "upper" \upper
+  \new ChoirStaff <<
+    \new Staff {
+      \new Voice = "melody" \upper
+    }
+    \addlyrics {
+      \override Lyrics.LyricText.font-name = "Noto Sans CJK TC"
+      \override Lyrics.LyricText.font-size = #-2
+      门 复 关 _
+    }
   >>
-  \layout { }
+  \layout {
+    \context {
+      \Score
+      % \override DynamicText.direction = #UP
+      % \override DynamicLineSpanner.direction = #UP
+    }
+  }
   \midi { }
 }

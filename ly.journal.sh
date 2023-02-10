@@ -7,7 +7,7 @@
   echo
 
   LS="$(ls -A1 | sort)"
-  JN="$(cat ../ly.journal.txt | grep -v -E -e '^$' -e '^\[[0-9]{8}\]$' | sort | uniq)"
+  JN="$(cat ../ly.journal.txt | grep -v -E -e '^$' -e '^# ' | sort | uniq)"
 
   # echo "[ls]     "; echo "$LS"; echo
   # echo "[journal]"; echo "$JN"; echo

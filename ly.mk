@@ -4,12 +4,16 @@
 # relative paths are not based on ly.mk
 # relative paths are based on Makefiles that include ly.mk
 
+# $(error WIP)
+
 MAKEFLAGS:=-j1
+
+SYNTH:=/home/darren/music/ly.script.fluidsynth.sh
 
 # IDTITLE:=$(patsubst ly.%,%,$(shell basename $(shell pwd)))
 # TITLE:=$(word 2,$(subst ., ,$(IDTITLE)))
-ID:=$(word 2,$(subst ., ,$(shell basename $(shell pwd))))
-TITLE:=$(word 3,$(subst ., ,$(shell basename $(shell pwd))))
+ID:=$(word 1,$(subst ., ,$(shell basename $(shell pwd))))
+TITLE:=$(word 2,$(subst ., ,$(shell basename $(shell pwd))))
 
 # test:
 # 	@echo '$(MAKEFLAGS)'
@@ -26,6 +30,7 @@ view: lu.pdf
 
 play: lu.$(EXT)
 	/usr/bin/mpv --loop-file=inf --no-resume-playback --no-save-position-on-quit $^
+# 	/usr/bin/mpv --loop-file=inf --no-resume-playback --no-save-position-on-quit $^ --start=01:20
 
 # 3/3 encode
 m4a: lu.$(EXT)
@@ -34,11 +39,11 @@ m4a: lu.$(EXT)
 # 2/3 synthesize
 luext: lu.$(EXT)
 lu.$(EXT): lu.midi
-	../../ly.script.fluidsynth.sh $^ $@
+	$(SYNTH) $^ $@
 
 # 1/3 compose
 lu.pdf lu.midi:
-	/usr/bin/lilypond --pdf -o lu main.ly
+	/usr/bin/lilypond -e '(define-public qihocu "$(ID).$(TITLE)")' --pdf -o lu main.ly
 
 clean:
 	/usr/bin/rm -fv *.pdf *.aiff *.midi *.wav *.m4a
