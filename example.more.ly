@@ -122,10 +122,44 @@ r\maxima r\longa r\breve r1 r2 r4 r8 r16 r32 r64 r128
 % https://lilypond.org/doc/v2.24/Documentation/notation/creating-titles-headers-and-footers
 % https://lilypond.org/doc/v2.24/Documentation/extending/lilypond-variables
 % https://lilypond.org/doc/v2.24/Documentation/usage/command_002dline-usage#basic-command-line-options-for-lilypond
-% https://music.stackexchange.com/questions/120916/how-do-i-change-the-lilypond-title-font
 lilypond ... -e '(define-public qihocu "$(ID).$(TITLE)")' ...
 \header {
   pdftitle = \qihocu
   title = \markup { \override #'((font-name . "Noto Sans CJK TC") (font-size . 6)) \qihocu }
   tagline = ##f
 }
+
+% https://music.stackexchange.com/questions/120916/how-do-i-change-the-lilypond-title-font
+% https://lilypond.org/doc/v2.22/Documentation/snippets/text#text-formatting-lyrics-syllables
+\markup attention = \markup \with-color #red \etc
+\markup \attention how \markup \attention are \markup \attention you
+
+% https://lilypond.org/doc/v2.24/Documentation/notation/input-modes
+\chordmode \chords % \new ChordNames
+\drummode
+\figuremode
+\lyricmode
+\markup
+\notemode
+
+\lyricmode {
+  \override Lyrics.LyricText.font-name = "Noto Sans CJK TC"
+  \override Lyrics.LyricText.font-size = #-2
+  ...
+}
+
+% https://lilypond.org/doc/v2.24/Documentation/internals/all-layout-objects
+% https://lilypond.org/doc/v2.24/Documentation/learning/visibility-and-color-of-objects
+% https://lilypond.org/doc/v2.24/Documentation/notation/inside-the-staff#coloring-objects
+% https://lilypond.org/doc/v2.24/Documentation/notation/list-of-colors
+% https://lilypond.org/doc/v2.24/Documentation/notation/the-override-command#index-_005crevert-1
+\override NoteHead.color = "brown"
+\override Stem.color = "brown"
+\override Beam.color = "brown"
+\revert NoteHead.color
+\revert Stem.color
+\revert Beam.color
+
+% https://lilypond.org/doc/v2.24/Documentation/snippets/text#text-adding-a-qr-code
+...
+

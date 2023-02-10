@@ -12,12 +12,25 @@ meta = {
 \include "lower.ly"
 \include "percussion.ly"
 
+upper = \new Staff = "upper" {
+  
+}
+
+lower = \new Staff = "lower" {
+  
+}
+
+percussion = \new Staff = "percussion" {
+  
+}
+
+% https://lilypond.org/doc/v2.24/Documentation/learning/organizing-pieces-with-variables
 \score {
   \new PianoStaff \with { instrumentName = "Piano" }
   <<
-    \new Staff = "upper" \upper
-    \new Staff = "lower" \lower
-    \new DrumStaff = "percussion" \percussion 
+    \upper
+    \lower
+    \percussion
   >>
   \layout { }
   \midi { }

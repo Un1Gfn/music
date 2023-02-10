@@ -9,41 +9,43 @@
 MAKEFLAGS:=-j1
 
 SYNTH:=/home/darren/music/ly.script.fluidsynth.sh
+LY:=/home/darren/music/ly.script.lilypond.sh
 
 # IDTITLE:=$(patsubst ly.%,%,$(shell basename $(shell pwd)))
 # TITLE:=$(word 2,$(subst ., ,$(IDTITLE)))
 ID:=$(word 1,$(subst ., ,$(shell basename $(shell pwd))))
 TITLE:=$(word 2,$(subst ., ,$(shell basename $(shell pwd))))
+BASENAME:=$(ID).$(TITLE)
 
-# test:
-# 	@echo '$(MAKEFLAGS)'
-# 	@echo '$(ID)'
-# 	@echo '$(TITLE)'
+PDF:=$(BASENAME).pdf
+MIDI:=$(BASENAME).midi
+AUDIO:=$(BASENAME).$(EXT)
+M4A:=$(BASENAME).m4a
 
-lupdf: lu.pdf
+pdf: $(PDF)
+audio: $(AUDIO)
 
 entrpdf:
-	/usr/bin/entr <<<"$$(/usr/bin/ls -1 *.ly)" $(MAKE) -B lu.pdf
+	echo; { echo $(LY); /usr/bin/ls -1 *.ly; } | /usr/bin/entr sh -c "$(MAKE) -B $(PDF); echo;"
 
-view: lu.pdf
+view: $(PDF)
 	( /usr/bin/atril $^ &>/dev/null & )
 
-play: lu.$(EXT)
+play: $(AUDIO)
 	/usr/bin/mpv --loop-file=inf --no-resume-playback --no-save-position-on-quit $^
 # 	/usr/bin/mpv --loop-file=inf --no-resume-playback --no-save-position-on-quit $^ --start=01:20
 
 # 3/3 encode
-m4a: lu.$(EXT)
-	/usr/bin/fdkaac -o $(ID).$(TITLE).m4a -p 2 -m 5 -f 0 $^ --title $(TITLE) --artist $(ARTIST) --album $(ALBUM) --composer $(COMPOSER)
+m4a: $(AUDIO)
+	/usr/bin/fdkaac -o $(M4A) -p 2 -m 5 -f 0 $^ --title $(TITLE) --artist $(ARTIST) --album $(ALBUM) --composer $(COMPOSER)
 
 # 2/3 synthesize
-luext: lu.$(EXT)
-lu.$(EXT): lu.midi
+$(AUDIO): $(MIDI)
 	$(SYNTH) $^ $@
 
 # 1/3 compose
-lu.pdf lu.midi:
-	/usr/bin/lilypond -e '(define-public qihocu "$(ID).$(TITLE)")' --pdf -o lu main.ly
+$(PDF) $(MIDI):
+	$(LY) -e '(define-public qihocu "$(BASENAME)")' --pdf -o $(BASENAME) main.ly
 
 clean:
 	/usr/bin/rm -fv *.pdf *.aiff *.midi *.wav *.m4a
