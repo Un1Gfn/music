@@ -1,22 +1,16 @@
-% lower.ly
-% accompaniment
-% https://en.wikipedia.org/wiki/accompaniment
+lower = {
 
-lower = \fixed c' {
-
-  \set Staff.midiMaximumVolume = #0.6
-
-  \meta
   \clef "bass"
   \key d \major
+  \set Staff.midiMaximumVolume = #0.6
 
   \fixed c, \chordmode {
 
-    | r1 | d4 d4 d4 d4 |
+    d1
 
-    d\breve g\breve a,\breve
+    d\breve g a,
 
-    d\breve d\breve g\breve
+    d\breve d g
 
     e1:m a, d\breve g1
 
@@ -24,7 +18,7 @@ lower = \fixed c' {
 
     d\breve e1:m a, e:m
 
-    a, e:m a, d\breve \bar "|."
+    a,1 e:m a, d\breve \fine
 
   }
 

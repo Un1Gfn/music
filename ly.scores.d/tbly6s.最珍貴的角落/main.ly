@@ -1,13 +1,6 @@
 \version "2.24.0"
-#(use-modules (guile-user))
-#(set-global-staff-size 26)
 
-colorAttentionOne = "brown"
-
-% colorAttentionTwo = "purple"
-colorAttentionTwo = "darkmagenta"
-
-% \markup warn = \markup \with-color \colorAttentionOne \etc
+\include "../../ly.preamble.ly"
 
 cautionOne = {
   d4
@@ -25,7 +18,7 @@ cautionOne = {
   d
 }
 
-meta = { \tempo \markup \italic "midi in E, sheet in C" 4 = 110 }
+speed = { \tempo \markup \italic "audio in E, sheet in C" 4 = 110 }
 
 prelude = {
 
@@ -47,14 +40,12 @@ main = {
 
   c1~ | 2 r8 \repeat unfold 2 { g8 c d | \volta 1 { \section \sectionLabel \markup { \fontsize #-5 "[Chorus]" } } \volta 2 { \break } | e4 g8 g g4 e | \alternative { \volta 1 { d4 g g d } \volta 2 { \cautionOne } } | c c8 b c4 a' |  \volta 1 { \break }
 
-  % g e g r | \volta 2 { \break } | a4 a8 g a4 a | g e8(d) c4 r | f e d c | \volta 1 { | a e' d8 } }
   g e g r | \volta 2 { \break } | a4 a8 g a4 a | g \volta 1 { e8(d) } \volta 2 { e8 d } c4 r | f e d c | \volta 1 { | a e' d8 } }
 
   | d2 e4 d | c1 \fine
 
 }
 
-% http://christianstudy.com/data/hymns/text/c2700.html
 lrcOne = \lyricmode {
   \override Lyrics.LyricText.font-name = \clgtqs
   \override Lyrics.LyricText.font-size = \tthzwk
@@ -79,25 +70,14 @@ lrcTwo = \lyricmode {
   亮 的 星
 }
 
-\header {
-  title = \markup {
-    % \override #'(font-name . "Noto Sans CJK TC")
-    % \override #'(font-size . 10)
-    \override #'((font-name . "Noto Sans CJK TC") (font-size . 3))
-    \qihocu
-  }
-}
-
 \score {
 
   \relative c' {
 
-    \meta
-
-    \time 4/4
-    \key c \major
+    \speed
     \clef "treble"
-    % \section \sectionLabel "E major"
+    \key c \major
+    \numericTimeSignature \time 4/4
 
     \prelude
     <<
@@ -111,6 +91,6 @@ lrcTwo = \lyricmode {
 }
 
 \score {
-  \transpose c e' \relative \unfoldRepeats { \meta \prelude \main }
+  \transpose c e'' \relative \unfoldRepeats { \speed \prelude \main }
   \midi { }
 }

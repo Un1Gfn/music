@@ -1,37 +1,46 @@
 \version "2.24.0"
 
-meta = {
-  \tempo "?" 4 = 92
-  \time 4/4
-  \override Score.BarNumber.break-visibility = ##(#t #t #t)
-  \key c \major
+\include "../../ly.preamble.ly"
+
+speed = { \tempo \markup \italic "audio in D, sheet in C" 4 = 200 }
+
+prelude = {
+
 }
 
-\include "upper.ly"
-\include "accompanimentfunc.ly"
-\include "lower.ly"
-\include "percussion.ly"
+main = {
 
-upper = \new Staff = "upper" {
-  
 }
 
-lower = \new Staff = "lower" {
-  
+lrc = lyricmode {
+  \override Lyrics.LyricText.font-name = \clgtqs
+  \override Lyrics.LyricText.font-size = \tthzwk
+  % ...
 }
 
-percussion = \new Staff = "percussion" {
-  
-}
-
-% https://lilypond.org/doc/v2.24/Documentation/learning/organizing-pieces-with-variables
 \score {
-  \new PianoStaff \with { instrumentName = "Piano" }
-  <<
-    \upper
-    \lower
-    \percussion
-  >>
-  \layout { }
+
+  \relative c'' {
+
+    \speed
+    \clef "treble"
+    \key c \major
+    \numericTimeSignature \time 4/4
+
+    \prelude
+    <<
+      \main \addlyrics \lrc
+    >>
+
+  }
+
+  \layout {
+    % \set Timing.measureBarType = #""
+  }
+
+}
+
+\score {
+  \transpose c d'' \relative \unfoldRepeats { \speed \prelude \main }
   \midi { }
 }

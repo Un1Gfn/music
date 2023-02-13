@@ -163,3 +163,26 @@ lilypond ... -e '(define-public qihocu "$(ID).$(TITLE)")' ...
 % https://lilypond.org/doc/v2.24/Documentation/snippets/text#text-adding-a-qr-code
 ...
 
+demo = \drummode {
+  r4.
+  % short
+  r hh hhp
+  r ss ssh ssl
+  r sne sna sn
+  r tomh toml
+  r bd
+  % long
+  % r hho hhho
+  % r cymr cymc
+}
+
+% sublime text add spaces
+% find    % ([^ ])([^ ])
+% replace % \1 \2
+
+% https://lilypond.org/doc/v2.24/Documentation/notation/skipping-corrected-music
+showLastLength = R1*5
+showFirstLength = R1*5
+
+% https://lilypond.org/doc/v2.24/Documentation/notation/special-rhythmic-concerns#aligning-to-cadenzas
+#(mmrest-of-length MyCadenza)
