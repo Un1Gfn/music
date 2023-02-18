@@ -185,4 +185,26 @@ showLastLength = R1*5
 showFirstLength = R1*5
 
 % https://lilypond.org/doc/v2.24/Documentation/notation/special-rhythmic-concerns#aligning-to-cadenzas
-#(mmrest-of-length MyCadenza)
+% https://lilypond.org/doc/v2.24/Documentation/notation/techniques-specific-to-lyrics#lyrics-and-repeats
+% http://www.christianstudy.com/data/hymns/text/c3382.html
+lrc = \lyricmode {
+  \skip #(mmrest-of-length prelude)
+  beginning
+  <<
+    { stanza1 }
+    \new Lyrics {
+      \set associatedVoice = "..."
+      stanza2
+    }
+  >>
+  ending
+}
+
+% https://lilypond.org/doc/v2.23/Documentation/notation/chord-mode#extended-and-altered-chords
+% https://lilypond.org/doc/v2.23/Documentation/notation/chord-mode#chord-inversions-and-specific-voicings
+% <<a,,:5 a,>>
+% \invertchords
+% \set minimumFret
+% \set maximumFretStretch
+% \unset maximumFretStretch
+

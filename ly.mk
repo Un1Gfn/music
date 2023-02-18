@@ -16,6 +16,7 @@ TITLE:=$(word 2,$(subst ., ,$(shell basename $(shell pwd))))
 BASENAME:=$(ID).$(TITLE)
 
 PDF:=$(BASENAME).pdf
+2UP:=$(BASENAME).2up.pdf
 MIDI:=$(BASENAME).midi
 WAV:=$(BASENAME).wav
 M4A:=$(BASENAME).m4a
@@ -28,8 +29,16 @@ wav: $(WAV)
 entrpdf:
 	echo; { /usr/bin/printf '%s\n' $(LY) $(PREAMBLE); /usr/bin/ls -1 *.ly; } | /usr/bin/entr sh -c "$(MAKE) -B $(PDF); echo;"
 
-view: $(PDF)
-	( /usr/bin/atril $^ &>/dev/null & )
+entr2up:
+	echo; { /usr/bin/printf '%s\n' $(LY) $(PREAMBLE); /usr/bin/ls -1 *.ly; } | /usr/bin/entr sh -c "clear; tput reset; $(MAKE) -B $(2UP); echo;"
+
+# view: $(PDF)
+# 	( /usr/bin/atril $^ &>/dev/null & )
+
+view:
+	shopt -s nullglob; for i in *.pdf; do ( /usr/bin/atril $$i &>/dev/null & ); done
+# 	shopt -s nullglob; for i in *.pdf; do echo ...$$i...; done
+
 
 play: $(WAV)
 	/usr/bin/mpv --loop-file=inf --no-resume-playback --no-save-position-on-quit $^
@@ -42,6 +51,10 @@ m4a: $(WAV)
 # 2/3 synthesize
 $(WAV): $(MIDI)
 	$(SYNTH) $^ $@
+
+2up: $(2UP)
+$(2UP): $(PDF)
+	pdfjam --outfile $@ --landscape --paper a3paper --nup 2x1 $^
 
 # 1/3 compose
 $(PDF) $(MIDI):

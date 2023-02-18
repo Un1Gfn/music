@@ -4,16 +4,27 @@
 % https://lilypond.org/doc/v2.24/Documentation/notation/paper-size-and-automatic-scaling
 % #(set-default-paper-size "a5")
 % #(set-default-paper-size "a5landscape")
-#(set-default-paper-size "a5portrait")
+% #(set-default-paper-size "a3landscape")
+#(set-default-paper-size "a4portrait")
+#(set-global-staff-size 23)
 
-#(set-global-staff-size 22)
-
+colorFade = "gray"
 colorAttentionOne = "brown"
 colorAttentionTwo = "darkmagenta"
 % colorAttentionTwo = "purple"
 
 % \markup markupAttentionOne = \markup \with-color \colorAttentionOne \etc
 % \markup markupAttentionTwo = \markup \with-color \colorAttentionTwo \etc
+
+fbFade = {
+  % \override ChordName.color = \colorFade
+  \override FretBoard.color = \colorFade
+}
+
+fbRevert = {
+  % \revert ChordName.color
+  \revert FretBoard.color
+}
 
 noteAttentionOne = {
   \override NoteHead.color = \colorAttentionOne
@@ -34,7 +45,7 @@ noteAttentionRevert = {
 }
 
 \header {
-  title = \markup { \override #'((font-name . "Noto Sans CJK TC") (font-size . 3)) \qihocu }
+  % title = \markup { \override #'((font-name . "Noto Sans CJK TC") (font-size . 3)) \qihocu }
   tagline = ##f
 }
 
@@ -49,6 +60,10 @@ noteAttentionRevert = {
 
 Verse = {
   \section \sectionLabel \markup { \fontsize #-5 "[Verse]" }
+}
+
+PreChorus = {
+  \section \sectionLabel \markup { \fontsize #-5 "[Pre-Chorus]" }
 }
 
 Chorus = {
