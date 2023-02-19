@@ -7,12 +7,8 @@ A=/home/darren/music/ly.scores.d
 B=/home/darren/bible/scores.img.d
 
 X=(
-  xn22ns.信靠每一句應許
-  zaup1o.喜樂泉源
   n4js9z.順服
   iykmv4.回家
-  q80ec3.主我跟祢走
-  g8s4jl.在你沒有難成的事
 )
 
 A=("${X[@]/#/"$A/"}")
@@ -124,7 +120,7 @@ gen_ss() {
   /usr/bin/pdfunite "${PDFS[@]}" ss1.pdf
   echo
 
-  gen_pdf_4up ss1.pdf ss4.pdf
+  # gen_pdf_4up ss1.pdf ss4.pdf
 
 }
 
@@ -173,8 +169,8 @@ gen_zip(){
 
   gen_clean
 
-  gen_nmn
-  # gen_ss
+  # gen_nmn
+  gen_ss
 
   gen_zip
 

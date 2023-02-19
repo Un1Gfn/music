@@ -27,7 +27,7 @@ pdf: $(PDF)
 wav: $(WAV)
 
 entrpdf:
-	echo; { /usr/bin/printf '%s\n' $(LY) $(PREAMBLE); /usr/bin/ls -1 *.ly; } | /usr/bin/entr sh -c "$(MAKE) -B $(PDF); echo;"
+	echo; { /usr/bin/printf '%s\n' $(LY) $(PREAMBLE); /usr/bin/ls -1 *.ly; } | /usr/bin/entr sh -c "clear; tput reset; $(MAKE) -B $(PDF); echo;"
 
 entr2up:
 	echo; { /usr/bin/printf '%s\n' $(LY) $(PREAMBLE); /usr/bin/ls -1 *.ly; } | /usr/bin/entr sh -c "clear; tput reset; $(MAKE) -B $(2UP); echo;"

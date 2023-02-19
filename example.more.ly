@@ -208,3 +208,8 @@ lrc = \lyricmode {
 % \set maximumFretStretch
 % \unset maximumFretStretch
 
+% monospace
+% https://lilypond.org/doc/v2.24/Documentation/notation/fonts#font-families
+% \override #'(font-family . "typewriter")
+% \override TextMark.font-family = #'typewriter
+% \revert TextMark.font-family
