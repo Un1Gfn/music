@@ -138,8 +138,24 @@ gen_zip(){
   done
   echo
 
-  # zip -v -j "$Z" *.pdf "${M4AS[@]}"
-  zip -v "$Z" ??.*.m4a nmn4.pdf ss4.pdf
+  shopt -s nullglob
+  local CMD=(
+
+    zip
+    -v
+    # -j
+    "$Z"
+
+    # "${M4AS[@]}"
+    ??.*.m4a
+
+    # nmn4.pdf
+    # ss4.pdf
+    ss1.pdf
+
+  )
+
+  "${CMD[@]}"
   echo
 
   file "$(realpath "$Z")"
@@ -174,5 +190,4 @@ gen_zip(){
 
   gen_zip
 
-};
-2
+}; exit

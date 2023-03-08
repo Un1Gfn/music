@@ -39,7 +39,6 @@ view:
 	shopt -s nullglob; for i in *.pdf; do ( /usr/bin/atril $$i &>/dev/null & ); done
 # 	shopt -s nullglob; for i in *.pdf; do echo ...$$i...; done
 
-
 play: $(WAV)
 	/usr/bin/mpv --loop-file=inf --no-resume-playback --no-save-position-on-quit $^
 # 	/usr/bin/mpv --loop-file=inf --no-resume-playback --no-save-position-on-quit $^ --start=01:20
