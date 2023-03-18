@@ -4,18 +4,23 @@ SYNTH:=~/music/ly.script.fluidsynth.sh
 N2L:=~/music/ly.script.1234567.cdefgab.sh
 ZIP:=2023-03-12.zip
 
-default: mid wav m4a zip
+default: mid wav play
+# default: mid wav m4a zip
 
 clean:
 	/usr/bin/rm -fv *.pdf *.aiff *.midi *.wav *.m4a cdefgab.txt
 
 mid:
-	$(LY) -o main main.ly
+	$(LY) main.ly
+# 	$(LY) -o main main.ly
 
 wav:
 	for i in *.midi; do $(SYNTH) $$i $${i%.midi}.wav; done
 
 m4a:
+	@echo
+	@/usr/bin/parallel -V
+	@echo
 	/usr/bin/ls -A1 *.wav | /usr/bin/parallel /usr/bin/fdkaac -o {.}.m4a -p 2 -m 5 -f 0 {}
 
 zip:
