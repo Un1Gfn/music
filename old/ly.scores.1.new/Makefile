@@ -2,13 +2,13 @@ MAKEFLAGS:=-j1
 LY:=~/music/ly.script.lilypond.sh
 SYNTH:=~/music/ly.script.fluidsynth.sh
 N2L:=~/music/ly.script.1234567.cdefgab.sh
-ZIP:=2023-03-12.zip
+ZIP:=2023-03-19.zip
 
-default: mid wav play
-# default: mid wav m4a zip
+# default: mid wav play
+default: mid wav m4a zip
 
 clean:
-	/usr/bin/rm -fv *.pdf *.aiff *.midi *.wav *.m4a cdefgab.txt
+	/usr/bin/rm -fv *.pdf *.aiff *.midi *.wav *.m4a *.zip cdefgab.txt
 
 mid:
 	$(LY) main.ly

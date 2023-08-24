@@ -20,6 +20,6 @@
 
 \book { \score { \karuvd \midi {} } \bookOutputName "01.一切歌頌讚美" }
 
-% \book { \score { \sxxbzs \midi {} } \bookOutputName "02.愛可以再多一點點" }
+\book { \score { \sxxbzs \midi {} } \bookOutputName "02.愛可以再多一點點" }
 
-% \book { \score { \qrhrwf \midi {} } \bookOutputName "03.吧冷漠變成愛" }
+\book { \score { \qrhrwf \midi {} } \bookOutputName "03.吧冷漠變成愛" }

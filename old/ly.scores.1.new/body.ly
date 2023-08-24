@@ -1,5 +1,5 @@
 
-karuvdAlpha = { | e1 | d4 e2 d4 | }
+karuvdAlpha = { | e1 | d4 e2 d4 | c1 | }
 
 karuvdVerse = {
 
@@ -21,7 +21,7 @@ karuvdChorus = {
 
       \volta 1 { | e1 | e4 g2 e4 | d1 | g4 f e d | }
 
-      \volta 2 { | \karuvdAlpha | c1 | }
+      \volta 2 { | \karuvdAlpha | }
 
     }
 
@@ -33,15 +33,16 @@ karuvd = \transpose c f \relative {
 
   \time 4/4
   \tempo 4=145
-  % \tempo 4=180 % test
+  % \tempo 4=320 % test
+
+  % \karuvdVerse \karuvdChorus
 
   \karuvdVerse \karuvdChorus
-
-  % \karuvdVerse \karuvdChorus
-  % \karuvdVerse \karuvdChorus
-  % \karuvdChorus
-  % \karuvdChorus
-  % \karuvdAlpha | c1 |
+  \karuvdVerse \karuvdChorus
+  \karuvdChorus
+  \karuvdChorus
+  \karuvdAlpha
+  \karuvdAlpha
 
 }
 
@@ -56,7 +57,7 @@ sxxbzsVerse = {
 
   | a8. c c,8 g' e c8. c16 | e8 d4 c8 c4 d8 c | c2. r8 c | c'4. c8 b c16 b8 g8. |
 
-  | a8 g16 g8 f8. e4. c8 | c'4. c8 b c16 b8 g8. | \partial 2 { a8 a16 a8 c8. } | b2.
+  | a8 g16 g8 f8. e4. c8 | c'4. c8 b c16 b8 g8. | \time 2/4  a8 a16 a8 c8. \time 4/4 | b2.
 
 }
 
@@ -64,13 +65,13 @@ sxxbzsAlpha = {
 
   c8 |
 
-  | a'4. c8 b c16 b8 a16 g8 | g4 e8 g c4. c,8 | e8. f4~4.. c8 | e8. f16~4 e8. c a8 | c1 |
+  | a'4. c8 b c16 b8 a16 g8 | g4 e8 g c4. c,8 | e8. f4~4.. c8 | e8. f16~4 e8. c a8 |
 
 }
 
 sxxbzsChorus = {
 
-  g8 f |
+  f8 |
 
   | e2 g8 f16 e8 d8. | d8 c c d16 c e4. c8 | a' g g f g4. c,8 | e d d c d2 |
 
@@ -78,19 +79,19 @@ sxxbzsChorus = {
 
 }
 
-
 sxxbzs = \transpose c d' \relative {
 
   \time 4/4
   \tempo 4=70
-  % \tempo 4=120 % test
+  % \tempo 4=180 % test
 
-  r4 r r r8 \sxxbzsPrelude \sxxbzsVerse \sxxbzsChorus
+  % r4 r r r8 \sxxbzsPrelude \sxxbzsVerse \sxxbzsChorus
 
-  % \sxxbzsPrelude \sxxbzsVerse \sxxbzsChorus
-  % \sxxbzsPrelude \sxxbzsVerse \sxxbzsChorus
-  % \sxxbzsChorus
-  % \sxxbzsAlpha
+  | r4 r r r8 
+  \sxxbzsPrelude \sxxbzsVerse g8 \sxxbzsChorus | c2. r8
+  \sxxbzsPrelude \sxxbzsVerse g8 \sxxbzsChorus | c2 r4
+  g'8 \sxxbzsChorus | c2. r8
+  \sxxbzsAlpha | c1 |
 
 }
 
@@ -108,9 +109,9 @@ qrhrwfVerse = {
 
 qrhrwfAlpha = {
 
-  b8 a |
+  a8 |
 
-  | g4 r8 g c4 e,8 d | c4 r8 g d' d c b | c\breve |
+  | g4 r8 g c4 e,8 d | c4 r8 g d' d c b |
 
 }
 
@@ -122,23 +123,23 @@ qrhrwfChorus = {
 
   | f'8 f f f4 f8 f e | d4. d8 d d e f | g1~ | g2. r8 c,8 |
 
-  | g'8 g g g4. e8 f | g2.. c,8 | a' a4 a8 a4 b | | c2. \qrhrwfAlpha
+  | g'8 g g g4. e8 f | g2.. c,8 | a' a4 a8 a4 b | | c2. b8 \qrhrwfAlpha |
 
 }
 
 qrhrwf = \transpose c d' \relative {
 
   \time 4/4
-  \tempo 4=70
-  % \tempo 4=160 % test
+  \tempo 4=130
+  % \tempo 4=300 % test
 
-  \qrhrwfVerse \qrhrwfChorus
+  % \qrhrwfVerse \qrhrwfChorus | c\breve
 
-  % \qrhrwfVerse \qrhrwfChorus
-  % \qrhrwfVerse \qrhrwfChorus
-  % \qrhrwfChorus
-  % \qrhrwfAlpha
-  % \qrhrwfAlpha
+  \qrhrwfVerse \qrhrwfChorus | c1~ | c1 |
+  \qrhrwfVerse \qrhrwfChorus | c1~ | c2. r8
+  \qrhrwfChorus | c1~ | c2 r4
+  b'8 \qrhrwfAlpha | c1~ | c2 r4
+  b'8 \qrhrwfAlpha | c1~ | c1 |
 
 }
 
