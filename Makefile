@@ -11,6 +11,7 @@ default: clean midi wav m4a zip
 
 clean:
 	grm -fv *.tmp *.midi *.wav *.m4a SATB.zip
+	grm -iv *.pdf; gtrue
 
 midi:
 	$(LY) main.ly

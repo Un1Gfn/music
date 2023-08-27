@@ -58,7 +58,7 @@ Bass = \relative f {
 	\bookOutputName "What.a.Friend.We.Have.in.Jesus-SATB"
 }
 
-\book { \score { { \meta \ready \Soprano } \midi {} } \bookOutputName "What.a.Friend.We.Have.in.Jesus-Soprano" }
-\book { \score { { \meta \ready \Alto } \midi {} } \bookOutputName "What.a.Friend.We.Have.in.Jesus-Alto" }
-\book { \score { { \meta \ready \Tenor } \midi {} } \bookOutputName "What.a.Friend.We.Have.in.Jesus-Tenor" }
-\book { \score { { \meta \ready \Bass } \midi {} } \bookOutputName "What.a.Friend.We.Have.in.Jesus-Bass" }
+\book { \score { { \meta \ready \repeat unfold 4 \Soprano } \midi {} } \bookOutputName "What.a.Friend.We.Have.in.Jesus-Soprano" }
+\book { \score { { \meta \ready \repeat unfold 4 \Alto    } \midi {} } \bookOutputName "What.a.Friend.We.Have.in.Jesus-Alto" }
+\book { \score { { \meta \ready \repeat unfold 4 \Tenor   } \midi {} } \bookOutputName "What.a.Friend.We.Have.in.Jesus-Tenor" }
+\book { \score { { \meta \ready \repeat unfold 4 \Bass    } \midi {} } \bookOutputName "What.a.Friend.We.Have.in.Jesus-Bass" }
