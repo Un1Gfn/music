@@ -1,5 +1,4 @@
 MAKEFLAGS:=-j1
-
 LY:=./script_lilypond.zsh
 SYNTH:=./script_fluidsynth.zsh
 # N2L:=~/music/ly.script.1234567.cdefgab.sh
@@ -7,15 +6,23 @@ PARALLEL:=/opt/homebrew/bin/parallel
 FDKAAC:=/opt/homebrew/bin/fdkaac
 ZIP:=/opt/homebrew/opt/zip/bin/zip
 
-default: clean midi wav m4a zip
+CURRENT:=715484828
+
+default:
+	$(MAKE) clean
+	$(MAKE) midi
+	$(MAKE) wav
+	$(MAKE) play
+	# $(MAKE) m4a
+	# $(MAKE) zip
 
 clean:
-	grm -fv *.tmp *.midi *.wav *.m4a SATB.zip
-	grm -iv *.pdf; gtrue
+	grm -fv -- SATB.zip *.tmp *.midi *.wav
+	grm -iv -- *.m4a; gtrue
 
 midi:
-	$(LY) main.ly
-# 	$(LY) -o main main.ly
+	$(LY) $(CURRENT).ly
+# 	$(LY) -o main $(CURRENT).ly
 
 wav:
 	# gls -Al *.midi | $(PARALLEL) -- $(SYNTH) {} {.}.wav
@@ -42,9 +49,13 @@ share:
 	grm -v $$T
 
 # --loop-file=inf
-# play:
-# 	vlc *.midi
-# 	# /usr/bin/mpv --keep-open=yes --no-resume-playback --no-save-position-on-quit --start=00:00 *.wav
+# vlc *.midi
+play:
+	mpv \
+	  --keep-open=yes \
+	  --no-resume-playback \
+	  --no-save-position-on-quit \
+	  --start=00:00 In.Christ.Alone-A.wav
 
 # n2l:
 # 	$(N2L) 1234567.txt >cdefgab.txt

@@ -5,11 +5,17 @@
 # VSLilyPond
 /*.tmp
 
-*.midi
-*.wav
-*.m4a
+/*.midi
+/*.wav
+/*.m4a
+/*.pdf
+/*.flac
+/*.mp4
 
 /SATB.zip
 /tgbot.chatid
 
 .DS_Store
+
+/notation.pdf
+/notation-big-page.html
