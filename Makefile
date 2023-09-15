@@ -55,7 +55,7 @@ play:
 	  --keep-open=yes \
 	  --no-resume-playback \
 	  --no-save-position-on-quit \
-	  --start=00:00 In.Christ.Alone-A.wav
+	  --start=00:00 In.Christ.Alone-S.wav
 
 # n2l:
 # 	$(N2L) 1234567.txt >cdefgab.txt
