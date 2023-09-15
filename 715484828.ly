@@ -77,7 +77,7 @@ ukxeux = {
 
 msfiwf = {
 
-  c,8 d8 f | f4.
+  %{ c8 %} d8 f | f4.
 
   c8 d f | g2
 
@@ -284,7 +284,7 @@ PartFourSoprano = \relative f' {
 
   }
 
-  \msfiwf
+  c,8 \msfiwf
 
   d'8 \ukxeux
 
@@ -312,13 +312,13 @@ PartFourSoprano = \relative f' {
 
 }
 
-PartFourAlto = \relative f {
+PartFourAlto = \relative f' {
 
   | r4.
 
   {
 
-    f8 a c | f4.
+    f8 a c | f,4.
 
     f8 f f | e4 r8
 
@@ -328,7 +328,7 @@ PartFourAlto = \relative f {
 
   }
 
-  \msfiwf
+  c8 \msfiwf
 
   d8 \ohhebq | g4 r8
 
@@ -338,11 +338,11 @@ PartFourAlto = \relative f {
 
     g8 b g | g4.
 
-    g8 g g | f4 r8
+    g8 g g | fis4 r8
 
     g8 g g | g4.
 
-    g8 g g | f4 r8
+    g8 g g | fis4 r8
 
   }
 
@@ -352,13 +352,13 @@ PartFourAlto = \relative f {
 
     d8 c c | d2
 
-    d8 d16 d | c8 e f4. c8 | b2 fis'4 | e4 r4
+    d8 d16 d | c8 e fis4. c8 | b2 fis'4 | e4 r4
 
   }
 
   {
 
-    e8 16 16 | 2 4 | g2. | f4 r4 g | g2.~ | g2.~ | g2.~ | g2. |
+    e8 16 16 | 2 4 | g2. | fis4 r4 g | g2.~ | g2.~ | g2.~ | g2. |
 
   }
 
@@ -453,6 +453,6 @@ PartFourBass = \relative f {
   \bookOutputName "In.Christ.Alone-M"
 } %}
 
-\book { \score { { \meta \ready \PartOneSA   \PartTwoSoprano \PartThreeSA r2 | r2. | \PartFourSoprano } \midi {} } \bookOutputName "In.Christ.Alone-S" }
-% \book { \score { { \meta \ready \PartOneSA   \PartTwoAlto    \PartThreeSA                \PartFourAlto    } \midi {} } \bookOutputName "In.Christ.Alone-A" }
+% \book { \score { { \meta \ready \PartOneSA   \PartTwoSoprano \PartThreeSA r2 | r2. | \PartFourSoprano } \midi {} } \bookOutputName "In.Christ.Alone-S" }
+\book { \score { { \meta \ready \PartOneSA   \PartTwoAlto    \PartThreeSA r2 | r2. | \PartFourAlto    } \midi {} } \bookOutputName "In.Christ.Alone-A" }
 % \book { \score { { \meta \ready \PartOneBass \PartTwoBass                 \PartThreeBass \PartFourBass    } \midi {} } \bookOutputName "In.Christ.Alone-B" }
