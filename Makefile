@@ -5,6 +5,7 @@ SYNTH:=./script_fluidsynth.zsh
 PARALLEL:=/opt/homebrew/bin/parallel
 FDKAAC:=/opt/homebrew/bin/fdkaac
 ZIP:=/opt/homebrew/opt/zip/bin/zip
+ZIPFILE=SAB.zip
 
 CURRENT:=715484828
 
@@ -12,12 +13,12 @@ default:
 	$(MAKE) clean
 	$(MAKE) midi
 	$(MAKE) wav
-	$(MAKE) play
-	# $(MAKE) m4a
-	# $(MAKE) zip
+	# $(MAKE) play
+	$(MAKE) m4a
+	$(MAKE) zip
 
 clean:
-	grm -fv -- SATB.zip *.tmp *.midi *.wav
+	grm -fv -- $(ZIPFILE) *.tmp *.midi *.wav
 	grm -iv -- *.m4a; gtrue
 
 midi:
@@ -38,12 +39,12 @@ m4a:
 	gls -A1 *.wav | $(PARALLEL) -- $(FDKAAC) -o {.}.m4a -p 2 -m 5 -f 0 {}
 
 zip:
-	grm -fv SATB.zip
-	$(ZIP) -X -0 SATB.zip *.m4a
+	grm -fv $(ZIPFILE)
+	$(ZIP) -X -0 $(ZIPFILE) *.m4a
 
 share:
 	T=/tmp/SATB-$(shell date +%s).zip; \
-	gcp -v SATB.zip $$T; \
+	gcp -v $(ZIPFILE) $$T; \
 	gcp -v $$T '/Users/darren/Library/Mobile Documents/com~apple~CloudDocs/euw9o3/'; \
 	sudo zsh /usr/local/bin/tgbot.zsh $$T; \
 	grm -v $$T
@@ -55,7 +56,7 @@ play:
 	  --keep-open=yes \
 	  --no-resume-playback \
 	  --no-save-position-on-quit \
-	  --start=00:00 In.Christ.Alone-A.wav
+	  --start=00:00 In.Christ.Alone-M.wav
 
 # n2l:
 # 	$(N2L) 1234567.txt >cdefgab.txt

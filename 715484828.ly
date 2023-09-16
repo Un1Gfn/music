@@ -81,7 +81,7 @@ msfiwf = {
 
   c8 d f | g2
 
-  a8 g16 f | d8 a' g4. f8 | f2. | r4.
+  a8 g16 f | d8 a' g4. f8 |
 
 }
 
@@ -241,7 +241,7 @@ PartTwoBass = \relative e {
 
     gis8 a a | b4. r8
 
-    b8 gis16 gis | a8 a b4. a8 | gis2.
+    b8 gis16 gis | a8 a b4. a8 | gis2. |
 
   }
 
@@ -257,14 +257,7 @@ PartThreeSA = \relative b {
 
 PartThreeBass = \relative c {
 
-  {
-    c8 d f | f4.
-
-    c8 d f | g2
-
-    a8 g16 f | d8 a g4. f8 | f2.
-
-  }
+  c8 \msfiwf | f2.
 
 }
 
@@ -284,7 +277,7 @@ PartFourSoprano = \relative f' {
 
   }
 
-  c,8 \msfiwf
+  c,8 \msfiwf | f2. | r4.
 
   d'8 \ukxeux
 
@@ -328,7 +321,7 @@ PartFourAlto = \relative f' {
 
   }
 
-  c8 \msfiwf
+  c8 \msfiwf | f2. | r4.
 
   d8 \ohhebq | g4 r8
 
@@ -370,27 +363,27 @@ PartFourBass = \relative f {
 
   {
 
-    f8 a c | b4.
+    f8 a c | bes4.
 
-    b8 a c | c4 r8
+    bes8 a c | c4 r8
 
-    b8 a a | b4.
+    bes8 a a | bes4.
 
-    b8 b b | c4 r4 r4 | r8
+    bes8 bes bes | c4 r4 r4 | r8
 
   }
 
   {
 
-    c8 d f8 f4~ | f8
+    c,8 d f8 f4~ | f8
 
     c8 d f g4 |
 
-    | b8 b c4. b8 | a2. | r4.
+    | bes8 bes c4. bes8 | a2. | r4.
 
   }
 
-  d8 \ohhebq | g4 r8
+  d,8 \ohhebq | g4 r8
 
   d8 \ohhebq | g4 r8
 
@@ -398,7 +391,7 @@ PartFourBass = \relative f {
 
     g8 b b | c4.
 
-    c8 b a | d4 r8
+    c8 b g | d4 r8
 
     g8 b b | c4.
 
@@ -424,7 +417,7 @@ PartFourBass = \relative f {
 
 }
 
-%{ \book {
+\book {
   \score {
     {
       \meta
@@ -451,8 +444,8 @@ PartFourBass = \relative f {
     \midi {}
   }
   \bookOutputName "In.Christ.Alone-M"
-} %}
+}
 
-% \book { \score { { \meta \ready \PartOneSA   \PartTwoSoprano \PartThreeSA r2 | r2. | \PartFourSoprano } \midi {} } \bookOutputName "In.Christ.Alone-S" }
-\book { \score { { \meta \ready \PartOneSA   \PartTwoAlto    \PartThreeSA r2 | r2. | \PartFourAlto    } \midi {} } \bookOutputName "In.Christ.Alone-A" }
-% \book { \score { { \meta \ready \PartOneBass \PartTwoBass                 \PartThreeBass \PartFourBass    } \midi {} } \bookOutputName "In.Christ.Alone-B" }
+% \book { \score { { \meta \ready \PartOneSA   \PartTwoSoprano             \PartThreeSA r2 | r2. | \PartFourSoprano  } \midi {} } \bookOutputName "In.Christ.Alone-S" }
+% \book { \score { { \meta \ready \PartOneSA   \PartTwoAlto                \PartThreeSA r2 | r2. | \PartFourAlto     } \midi {} } \bookOutputName "In.Christ.Alone-A" }
+% \book { \score { { \meta \ready \PartOneBass \PartTwoBass    | r2. | r4. \PartThreeBass          \PartFourBass } \midi {} } \bookOutputName "In.Christ.Alone-B" }
