@@ -13,9 +13,9 @@ default:
 	$(MAKE) clean
 	$(MAKE) midi
 	$(MAKE) wav
-	# $(MAKE) play
-	$(MAKE) m4a
-	$(MAKE) zip
+	$(MAKE) play
+	# $(MAKE) m4a
+	# $(MAKE) zip
 
 clean:
 	grm -fv -- $(ZIPFILE) *.tmp *.midi *.wav

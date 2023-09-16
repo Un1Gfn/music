@@ -22,9 +22,10 @@
 
 %}
 
-meta = {
+global = {
   \time 3/4
   \tempo 4 = 80
+  \key e \major
 }
 
 ready = {
@@ -45,7 +46,7 @@ xldoqm = {
 
   e8 gis8 b | cis4.
 
-  cis8 b gis16~fis16 | fis4 r8
+  cis8 b gis16 fis16 | fis4 r8
 
   e8 e' dis | cis4.
 
@@ -257,6 +258,8 @@ PartThreeSA = \relative b {
 
 PartThreeBass = \relative c {
 
+  \key f \major
+
   c8 \msfiwf | f2.
 
 }
@@ -264,6 +267,8 @@ PartThreeBass = \relative c {
 PartFourSoprano = \relative f' {
 
   | r4.
+
+  \key f \major
 
   {
 
@@ -278,6 +283,8 @@ PartFourSoprano = \relative f' {
   }
 
   c,8 \msfiwf | f2. | r4.
+
+  \key g \major
 
   d'8 \ukxeux
 
@@ -309,6 +316,8 @@ PartFourAlto = \relative f' {
 
   | r4.
 
+  \key f \major
+
   {
 
     f8 a c | f,4.
@@ -322,6 +331,8 @@ PartFourAlto = \relative f' {
   }
 
   c8 \msfiwf | f2. | r4.
+
+  \key g \major
 
   d8 \ohhebq | g4 r8
 
@@ -383,6 +394,8 @@ PartFourBass = \relative f {
 
   }
 
+  \key g \major
+
   d,8 \ohhebq | g4 r8
 
   d8 \ohhebq | g4 r8
@@ -418,31 +431,30 @@ PartFourBass = \relative f {
 }
 
 \book {
+
   \score {
-    {
-      \meta
-      \ready
-      <<
-        \PartOneSA \\
-        \PartOneBass \\
-        { }
+    % https://lilypond.org/doc/v2.24/Documentation/learning/satb-vocal-score
+    \new ChoirStaff <<
+      \new Staff = "women" \with { \consists Merge_rests_engraver} <<
+        \clef treble
+        \new Voice = "sopranos" {
+          \voiceOne \global \PartOneSA \PartTwoSoprano | r2. | \PartThreeSA r2 | r2. r2. r2. r2. | \PartFourSoprano
+        }
+        \new Voice = "altos" {
+          \voiceTwo \global \PartOneSA \PartTwoAlto | r2. | \PartThreeSA r2 | r2. r2. r2.  r2. | \PartFourAlto
+        }
       >>
-      <<
-        \PartTwoSoprano \\
-        \PartTwoAlto \\
-        \PartTwoBass \\
-        { }
+      \new Staff = "men" <<
+        \clef bass
+        \new Voice = "basses" {
+          \voiceTwo \global \PartOneBass \PartTwoBass | r2. | r2. r2. r2. r2. | r4. \PartThreeBass | \PartFourBass
+        }
       >>
-      \PartThreeSA r8 \PartThreeBass
-      <<
-        \PartFourSoprano \\
-        \PartFourAlto \\
-        \PartFourBass \\
-        { }
-      >>
-    }
-    \midi {}
+    >>
+    \midi { }
+    \layout { }
   }
+
   \bookOutputName "In.Christ.Alone-M"
 }
 
