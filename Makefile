@@ -13,7 +13,7 @@ default:
 	$(MAKE) clean
 	$(MAKE) midi
 	$(MAKE) wav
-	$(MAKE) play
+	# $(MAKE) play
 	# $(MAKE) m4a
 	# $(MAKE) zip
 
@@ -59,7 +59,7 @@ play:
 	  --keep-open=yes \
 	  --no-resume-playback \
 	  --no-save-position-on-quit \
-	  --start=00:00 $(CURRENT).wav
+	  --start=00:00 $(CURRENT)$(C).wav
 
 # n2l:
 # 	$(N2L) 1234567.txt >cdefgab.txt
