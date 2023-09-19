@@ -7,7 +7,7 @@ FDKAAC:=/opt/homebrew/bin/fdkaac
 ZIP:=/opt/homebrew/opt/zip/bin/zip
 ZIPFILE=SAB.zip
 
-CURRENT:=715484828
+CURRENT:=2562095675
 
 default:
 	$(MAKE) clean
@@ -20,6 +20,9 @@ default:
 clean:
 	grm -fv -- $(ZIPFILE) *.tmp *.midi *.wav
 	grm -iv -- *.m4a; gtrue
+entr:
+	$(MAKE) clean
+	echo $(CURRENT).ly | entr sh -c ':; echo; $(MAKE) midi; echo'
 
 midi:
 	$(LY) $(CURRENT).ly
@@ -56,7 +59,7 @@ play:
 	  --keep-open=yes \
 	  --no-resume-playback \
 	  --no-save-position-on-quit \
-	  --start=00:00 In.Christ.Alone-M.wav
+	  --start=00:00 $(CURRENT).wav
 
 # n2l:
 # 	$(N2L) 1234567.txt >cdefgab.txt

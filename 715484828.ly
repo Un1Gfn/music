@@ -455,9 +455,9 @@ PartFourBass = \relative f {
     \layout { }
   }
 
-  \bookOutputName "In.Christ.Alone-M"
+  \bookOutputName "715484828-M"
 }
 
-% \book { \score { { \meta \ready \PartOneSA   \PartTwoSoprano             \PartThreeSA r2 | r2. | \PartFourSoprano  } \midi {} } \bookOutputName "In.Christ.Alone-S" }
-% \book { \score { { \meta \ready \PartOneSA   \PartTwoAlto                \PartThreeSA r2 | r2. | \PartFourAlto     } \midi {} } \bookOutputName "In.Christ.Alone-A" }
-% \book { \score { { \meta \ready \PartOneBass \PartTwoBass    | r2. | r4. \PartThreeBass          \PartFourBass } \midi {} } \bookOutputName "In.Christ.Alone-B" }
+% \book { \score { { \meta \ready \PartOneSA   \PartTwoSoprano             \PartThreeSA r2 | r2. | \PartFourSoprano  } \midi {} } \bookOutputName "715484828-S" }
+% \book { \score { { \meta \ready \PartOneSA   \PartTwoAlto                \PartThreeSA r2 | r2. | \PartFourAlto     } \midi {} } \bookOutputName "715484828-A" }
+% \book { \score { { \meta \ready \PartOneBass \PartTwoBass    | r2. | r4. \PartThreeBass          \PartFourBass } \midi {} } \bookOutputName "715484828-B" }

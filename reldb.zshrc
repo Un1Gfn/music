@@ -43,8 +43,9 @@ cpo_reldb_init() {
 
   # if no AMID/AppleMusicID, generate one with "gshuf -n 1 -i 2000000000-2999999999"
 
-  cpo_reldb_append  715484828 "999" "D_" "In Christ Alone"
   cpo_reldb_append 2574411984 "999" "B_" "What a Friend We Have in Jesus"
+  cpo_reldb_append  715484828 "999" "E_" "In Christ Alone Complex"
+  cpo_reldb_append 2562095675 "999" "E_" "In Christ Alone"
 
 }
 
