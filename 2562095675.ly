@@ -10,8 +10,8 @@ global = {
 rhhvve = { fis16 e | cis8 gis' fis4. e8 | e4 r8 }
 
 kcsiqr = {
-  cis8 e | e4.
-  b8 cis e | fis4. r8
+  b8 cis e | e4.
+  b8 cis e | fis4 r4
   gis8 \rhhvve
 }
 
@@ -23,7 +23,7 @@ xldoqm = {
 }
 
 fdgwhm = {
-  e8 e8 | 4.
+  b8 e e8 | 4.
   e8 8 8 | dis4 r8
   e8 8 8 | 4.
   e8 8 8 | dis4 r8
@@ -39,44 +39,45 @@ xtkgvu = {
 
 gbnefx = {
   b8 cis cis | b4.
-  b8 cis e | dis4. r8
+  b8 cis e | dis4 r4
   e8 fis16 e | cis8 cis dis4. b8 | b4 r8
 }
 
 awiiwa = {
   b8 cis cis | b4.
-  b8 cis cis | dis4. r8
+  b8 cis cis | dis4 r4
   e8 b16 b | cis8 cis dis4. b8 | b4 r8
 }
 
 pvfpps = {
   b8 a a | gis4.
-  gis8 a a | b4. r8
-  b8 gis16 gis | a8 a b4. a8 | gis4 r8
+  gis8 a a | b4 r4
+  % b8 gis16 gis | a8 a b4. a8 | gis4 r8
+  b8 gis16 gis | a8 a b4. gis8 | e'
 }
 
-cuezxl = { % JeisonCubillos
+cuezxl = { % Jeison
   cis8 8 8 | 4.
   cis8 8 8 | b4 r8
   cis8 8 8 | 4.
   cis8 8 8 | b4 r8
 }
 
-gdipvm = { % JeisonCubillos
+gdipvm = { % Jeison
   gis8 a a | gis4.
-  gis8 a a | b4. r8
-  gis'8 \rhhvve
+  gis8 a a | b4 r4
+  r4 | r2. | r4 r8
 }
 
 ahfthc = {
-  b'8 a a | gis4.
-  gis8 a a | b4. r8
+  b8 a a | gis4.
+  gis8 a a | b4 r4
   b8 b16 b | a8 a b4. a8 | gis4 r8
 }
 
 ddioxx = {
   gis8 a a | gis4.
-  gis8 a a | b4. r8
+  gis8 a a | b4 r4
   b8 gis16 gis | a8 a b4. a8 | gis4 r8
 }
 
@@ -93,34 +94,34 @@ ddioxx = {
         \consists Merge_rests_engraver
       } <<
         \clef treble
-        \new Voice = "Soprano" \relative b { \voiceOne \global
-          b8 \kcsiqr \break
-          b8 \kcsiqr \break
-          \xldoqm \break
-          b,8 \kcsiqr
+        \new Voice = "Soprano" { \voiceOne \global
+          \relative b'  \kcsiqr \break
+          \relative b'  \kcsiqr \break
+          \relative e'' \xldoqm \break
+          \relative b'  \kcsiqr
         }
-        \new Voice = "Alto" \relative b { \voiceTwo \global
-          \gbnefx \break % b8 \kcsiqr \break
-          \awiiwa \break % b8 \kcsiqr \break
-          <e b>8 \fdgwhm
-          \awiiwa % \sabwgp
+        \new Voice = "Alto" { \voiceTwo \global
+          \relative b \gbnefx \break
+          \relative b \awiiwa \break
+          \relative b \fdgwhm \break
+          \relative b \awiiwa
         }
       >>
       \new Staff = "TB" \with {
         \consists Merge_rests_engraver
       } <<
         \clef bass
-        \new Voice = "Tenor" \relative b, { \voiceOne \global
-          \ahfthc \break
-          \ddioxx \break
-          \xtkgvu \break
-          \pvfpps \break
+        \new Voice = "Tenor" { \voiceOne \global
+          r\breve. \break
+          r\breve. \break
+          \relative cis' \cuezxl \break
+          \relative gis  \gdipvm
         }
-        \new Voice = "Bass" \relative b, { \voiceTwo \global
-          b8 \kcsiqr \break
-          b8 \kcsiqr \break
-          \cuezxl \break
-          \gdipvm \break
+        \new Voice = "Bass" { \voiceTwo \global
+          \relative b,   \ahfthc \break
+          \relative gis, \ddioxx \break
+          \relative gis, \xtkgvu \break
+          \relative b,   \pvfpps
         }
       >>
     >>
